@@ -1,15 +1,16 @@
-import {useState} from 'react';
+import { useState } from 'react';
+import { connect } from 'react-redux';
 import clsx from 'clsx';
-import './App.css';
+import './Tasks.css';
+import {addTask, deleteTask, setCompleteTask, setFilter} from './tasksSlice';
 
-
-function App({tasks, filter, setFilter, addTask, deleteTask, setCompleteTask}) {
+function Tasks({tasks, taskFilter, setFilter, addTask, deleteTask, setCompleteTask}) {
   const [taskField, setTaskField] = useState('');
 
   const availableTasks = tasks.filter(task => {
-    return filter === 'ALL' ||
-    (filter === 'PENDING' && !task.is_complete) ||
-    (filter === 'COMPLETE' && task.is_complete) 
+    return taskFilter === 'ALL' ||
+    (taskFilter === 'PENDING' && !task.is_complete) ||
+    (taskFilter === 'COMPLETE' && task.is_complete) 
   })
   const completedTasks = availableTasks.filter(task => task.is_complete);
   const uncompletedTasks = availableTasks.filter(task => !task.is_complete);
@@ -38,7 +39,7 @@ function App({tasks, filter, setFilter, addTask, deleteTask, setCompleteTask}) {
         {['all', 'pending', 'complete'].map(name => {
           const className = clsx({
             'filter__button': true,
-            'filter__button--active': name.toUpperCase() === filter 
+            'filter__button--active': name.toUpperCase() === taskFilter 
           })
           return <button key={name} className={className} onClick={() => setFilter(name.toUpperCase())}>{name}</button> 
         })} 
@@ -65,4 +66,11 @@ function App({tasks, filter, setFilter, addTask, deleteTask, setCompleteTask}) {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    tasks: state.tasks,
+    taskFilter: state.taskFilter
+  }
+}
+const actionCreators = {addTask, deleteTask, setCompleteTask, setFilter};
+export default connect(mapStateToProps, actionCreators)(Tasks);
