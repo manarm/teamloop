@@ -5,41 +5,54 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createStore } from 'redux';
 
-function todos(state = [], action) {
+function tasks(state = [], action) {
   switch (action.type) {
-    case 'ADD_TODO':
+    case 'ADD_TASK':
       const {item, id} = action;
-      return [...state, { item, id }];
-    case 'REMOVE_TODO':
-      return state.filter(todo => todo.id !== action.id);
+      const is_complete = false;
+      return [...state, { item, id, is_complete }];
+    case 'DELETE_TASK':
+      return state.filter(task => task.id !== action.id);
+    case 'COMPLETE_TASK':
+      return state.filter(task => {
+        if (task.id === action.id) {
+          task.is_complete = true;
+        }
+        return task;
+      })
     default: 
       return state;
   }
 }
 
-let store = createStore(todos);
+let store = createStore(tasks);
 
-let todo_id = 0;
-const addTodo = (item) => {
+let task_id = 0;
+const addTask = (item) => {
   store.dispatch({
-    type: 'ADD_TODO',
+    type: 'ADD_TASK',
     item,
-    id: todo_id
+    id: task_id
   });
-  todo_id++;
+  task_id++;
 }
-const removeTodo = (id) => {
+const deleteTask = (id) => {
   store.dispatch({
-    type: 'REMOVE_TODO',
+    type: 'DELETE_TASK',
+    id
+  });
+}
+const completeTask = (id) => {
+  store.dispatch({
+    type: 'COMPLETE_TASK',
     id
   });
 }
 
-
 const render = () => {
   ReactDOM.render(
     <React.StrictMode>
-      <App todos={store.getState()} addTodo={addTodo} removeTodo={removeTodo} />
+      <App tasks={store.getState()} addTask={addTask} deleteTask={deleteTask} completeTask={completeTask} />
     </React.StrictMode>,
     document.getElementById('root')
   );

@@ -1,0 +1,7 @@
+.completedList {
+  border-top: 1px solid black;
+}
+
+.completedTask {
+  text-decoration: line-through;
+}

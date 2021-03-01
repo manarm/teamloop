@@ -2,15 +2,18 @@ import {useState} from 'react';
 import './App.css';
 
 
-function App({todos, addTodo, removeTodo}) {
-  const [todoField, setTodoField] = useState('');
+function App({tasks, addTask, deleteTask, completeTask}) {
+  const [taskField, setTaskField] = useState('');
+
+  const completedTasks = tasks.filter(task => task.is_complete);
+  const uncompletedTasks = tasks.filter(task => !task.is_complete);
 
   const handleAddClick = () => {
-    if(todoField.length === 0) {
+    if(taskField.length === 0) {
       return;
     }
-    addTodo(todoField);
-    setTodoField('');
+    addTask(taskField);
+    setTaskField('');
   }
 
   const handleKeyPress = (e) => {
@@ -21,16 +24,27 @@ function App({todos, addTodo, removeTodo}) {
 
   return (
     <div className="App">
-      <input type='text' value={todoField} onKeyPress={handleKeyPress} onChange={e => setTodoField(e.target.value)} />
+      <input type='text' value={taskField} onKeyPress={handleKeyPress} onChange={e => setTaskField(e.target.value)} />
       <button onClick={handleAddClick}>Add Task</button>
       <ul>
-        {todos.map(todo => (
-          <li key={todo.id}>
-            {todo.item}
-            <button onClick={() => removeTodo(todo.id)}>x</button>
+        {uncompletedTasks.map(task => (
+          <li key={task.id}>
+            {task.item}
+            <button onClick={() => completeTask(task.id)}>✓</button>
+            <button onClick={() => deleteTask(task.id)}>x</button>
           </li>
         ))}
       </ul>
+      {completedTasks.length > 0 && 
+        <ul className="completedList">
+          {completedTasks.map(task => (
+              <li className="completedTask" key={task.id}>
+                {task.item}
+                <button onClick={() => deleteTask(task.id)}>x</button>
+              </li>
+            ))}
+        </ul>
+      }
     </div>
   );
 }
