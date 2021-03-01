@@ -1,23 +1,36 @@
-import logo from './logo.svg';
+import {useState} from 'react';
 import './App.css';
 
-function App() {
+
+function App({todos, addTodo, removeTodo}) {
+  const [todoField, setTodoField] = useState('');
+
+  const handleAddClick = () => {
+    if(todoField.length === 0) {
+      return;
+    }
+    addTodo(todoField);
+    setTodoField('');
+  }
+
+  const handleKeyPress = (e) => {
+    if(e.key === 'Enter') {
+      handleAddClick();
+    }  
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input type='text' value={todoField} onKeyPress={handleKeyPress} onChange={e => setTodoField(e.target.value)} />
+      <button onClick={handleAddClick}>Add Task</button>
+      <ul>
+        {todos.map(todo => (
+          <li key={todo.id}>
+            {todo.item}
+            <button onClick={() => removeTodo(todo.id)}>x</button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
