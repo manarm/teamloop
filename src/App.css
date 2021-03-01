@@ -1,7 +1,8 @@
-.completedList {
-  border-top: 1px solid black;
-}
-
 .completedTask {
   text-decoration: line-through;
+}
+
+/* switch to SASS */
+.filter__button--active {
+  font-weight: bold;
 }

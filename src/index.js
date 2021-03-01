@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
+
+// REDUCERS
 
 function tasks(state = [], action) {
   switch (action.type) {
@@ -15,7 +17,6 @@ function tasks(state = [], action) {
       return state.filter(task => task.id !== action.id);
     case 'SET_COMPLETE_TASK':
       return state.filter(task => {
-        console.log('complete id ' + action.id);
         if (task.id === action.id) {
           task.is_complete = action.is_complete;
         }
@@ -26,7 +27,19 @@ function tasks(state = [], action) {
   }
 }
 
-let store = createStore(tasks);
+function taskFilter(state = 'ALL', action) {
+  switch (action.type) {
+    case 'SET_FILTER':
+      return action.filter;
+    default:
+      return state;
+  }
+}
+
+const taskLoop = combineReducers({tasks, taskFilter});
+let store = createStore(taskLoop);
+
+// ACTION CREATORS
 
 let task_id = 0;
 const addTask = (item) => {
@@ -50,11 +63,17 @@ const setCompleteTask = (id, is_complete) => {
     id
   });
 }
+const setFilter = (filter) => {
+  store.dispatch({
+    type: 'SET_FILTER',
+    filter
+  })
+}
 
 const render = () => {
   ReactDOM.render(
     <React.StrictMode>
-      <App tasks={store.getState()} addTask={addTask} deleteTask={deleteTask} setCompleteTask={setCompleteTask} />
+      <App tasks={store.getState().tasks} filter={store.getState().taskFilter} setFilter={setFilter} addTask={addTask} deleteTask={deleteTask} setCompleteTask={setCompleteTask} />
     </React.StrictMode>,
     document.getElementById('root')
   );
