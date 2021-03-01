@@ -13,10 +13,11 @@ function tasks(state = [], action) {
       return [...state, { item, id, is_complete }];
     case 'DELETE_TASK':
       return state.filter(task => task.id !== action.id);
-    case 'COMPLETE_TASK':
+    case 'SET_COMPLETE_TASK':
       return state.filter(task => {
+        console.log('complete id ' + action.id);
         if (task.id === action.id) {
-          task.is_complete = true;
+          task.is_complete = action.is_complete;
         }
         return task;
       })
@@ -42,9 +43,10 @@ const deleteTask = (id) => {
     id
   });
 }
-const completeTask = (id) => {
+const setCompleteTask = (id, is_complete) => {
   store.dispatch({
-    type: 'COMPLETE_TASK',
+    type: 'SET_COMPLETE_TASK',
+    is_complete,
     id
   });
 }
@@ -52,7 +54,7 @@ const completeTask = (id) => {
 const render = () => {
   ReactDOM.render(
     <React.StrictMode>
-      <App tasks={store.getState()} addTask={addTask} deleteTask={deleteTask} completeTask={completeTask} />
+      <App tasks={store.getState()} addTask={addTask} deleteTask={deleteTask} setCompleteTask={setCompleteTask} />
     </React.StrictMode>,
     document.getElementById('root')
   );

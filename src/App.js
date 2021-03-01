@@ -2,7 +2,7 @@ import {useState} from 'react';
 import './App.css';
 
 
-function App({tasks, addTask, deleteTask, completeTask}) {
+function App({tasks, addTask, deleteTask, setCompleteTask}) {
   const [taskField, setTaskField] = useState('');
 
   const completedTasks = tasks.filter(task => task.is_complete);
@@ -26,24 +26,25 @@ function App({tasks, addTask, deleteTask, completeTask}) {
     <div className="App">
       <input type='text' value={taskField} onKeyPress={handleKeyPress} onChange={e => setTaskField(e.target.value)} />
       <button onClick={handleAddClick}>Add Task</button>
-      <ul>
+      <dl>
         {uncompletedTasks.map(task => (
-          <li key={task.id}>
+          <dt key={task.id}>
+            <input type="checkbox" onChange={() => setCompleteTask(task.id, true)}/>
             {task.item}
-            <button onClick={() => completeTask(task.id)}>✓</button>
             <button onClick={() => deleteTask(task.id)}>x</button>
-          </li>
+          </dt>
         ))}
-      </ul>
+      </dl>
       {completedTasks.length > 0 && 
-        <ul className="completedList">
+        <dl className="completedList">
           {completedTasks.map(task => (
-              <li className="completedTask" key={task.id}>
+              <dt className="completedTask" key={task.id}>
+                <input type="checkbox" checked={true} onChange={() => setCompleteTask(task.id, false)}/>
                 {task.item}
                 <button onClick={() => deleteTask(task.id)}>x</button>
-              </li>
+              </dt>
             ))}
-        </ul>
+        </dl>
       }
     </div>
   );
