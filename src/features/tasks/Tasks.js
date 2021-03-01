@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import clsx from 'clsx';
-import './Tasks.css';
+import styles from './Tasks.module.css';
 import {addTask, deleteTask, setCompleteTask, setFilter} from './tasksSlice';
 
 function Tasks({tasks, taskFilter, setFilter, addTask, deleteTask, setCompleteTask}) {
@@ -37,10 +36,7 @@ function Tasks({tasks, taskFilter, setFilter, addTask, deleteTask, setCompleteTa
       </div>
       <div className="filter">Display
         {['all', 'pending', 'complete'].map(name => {
-          const className = clsx({
-            'filter__button': true,
-            'filter__button--active': name.toUpperCase() === taskFilter 
-          })
+          const className = name.toUpperCase() === taskFilter ? styles.active : '';
           return <button key={name} className={className} onClick={() => setFilter(name.toUpperCase())}>{name}</button> 
         })} 
 
@@ -55,7 +51,7 @@ function Tasks({tasks, taskFilter, setFilter, addTask, deleteTask, setCompleteTa
         ))}
       {completedTasks.length > 0 && 
         completedTasks.map(task => (
-            <dt className="completedTask" key={task.id}>
+            <dt className={styles.completedTask} key={task.id}>
               <input type="checkbox" checked={true} onChange={() => setCompleteTask(task.id, false)}/>
               {task.item}
               <button onClick={() => deleteTask(task.id)}>x</button>

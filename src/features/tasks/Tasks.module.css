@@ -2,7 +2,6 @@
   text-decoration: line-through;
 }
 
-/* switch to SASS */
-.filter__button--active {
+.active {
   font-weight: bold;
 }
