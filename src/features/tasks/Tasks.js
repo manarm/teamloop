@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import styles from './Tasks.module.scss';
 import {addTask, deleteTask, setCompleteTask, setFilter} from './tasksSlice';
 import AddItem from './AddItem';
+import FilterSelect from './FilterSelect';
 import Header from '../common/Header'
 import Button from '../common/Button'
 
@@ -18,13 +19,7 @@ function Tasks({tasks, taskFilter, setFilter, addTask, deleteTask, setCompleteTa
     <div className={styles.card}>
       <Header />
       <AddItem addTask={addTask} />
-      <div className={styles.filter}>
-        <p>Display:</p>
-        {['all', 'pending', 'complete'].map(name => {
-          const standOut = name.toUpperCase() === taskFilter;
-          return <Button key={name} standOut={standOut} onClick={() => setFilter(name.toUpperCase())}>{name}</Button> 
-        })} 
-      </div>
+      <FilterSelect taskFilter={taskFilter} setFilter={setFilter} />
       <div className={styles.itemsDisplay}>
         <dl>
           {uncompletedTasks.map(task => (
