@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import styles from './Tasks.module.scss';
 import {addTask, deleteTask, setCompleteTask, setFilter} from './tasksSlice';
 import AddItem from './AddItem';
+import Header from '../common/Header'
 import Button from '../common/Button'
 
 function Tasks({tasks, taskFilter, setFilter, addTask, deleteTask, setCompleteTask}) {
@@ -15,6 +16,7 @@ function Tasks({tasks, taskFilter, setFilter, addTask, deleteTask, setCompleteTa
 
   return (
     <div className={styles.card}>
+      <Header />
       <AddItem addTask={addTask} />
       <div className={styles.filter}>
         <p>Display:</p>

@@ -38,7 +38,7 @@ export default function AddItem({addTask}) {
       <Button onClick={handleCloseModal}>X</Button>
     </div>
     <div className={styles.formFields}>
-      <label for="taskname">Task</label>
+      <label htmlFor="taskname">Task</label>
       <input id="taskname" type='text' value={taskField} onKeyPress={handleKeyPress} onChange={e => setTaskField(e.target.value)} />
     </div>
     <div className={styles.submitControls}>
