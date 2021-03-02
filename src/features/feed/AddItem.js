@@ -3,13 +3,13 @@ import styles from './AddItem.module.scss';
 import Modal from 'react-modal';
 import Button from '../common/Button';
 
-export default function AddItem({addTask}) {
+export default function AddItem({addTask, addThought}) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [taskField, setTaskField] = useState('');
 
-  // TEMPORARY 
+  // TODO -- pull into modal, make customizable.
   const handleAddThought = () => {
-    console.log("I'm thinking, I'm thinking...")
+    addThought('BRAND NU THINK');
   }
 
   const handleAddClick = () => {

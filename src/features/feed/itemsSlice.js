@@ -1,11 +1,62 @@
 import { combineReducers } from 'redux';
 
+// Utility
+// Status state machine, unique per-type.
+// type => status => [verb, nextStatus]
+export const getNextStatus = (item) => {
+  const typeMap = {
+    'THOUGHT': {
+      'NEW' : {
+        verb: 'Acknowledge',
+        nextStatus: 'COMPLETE'
+      }
+    },
+    'TASK': {
+      'NEW' : {
+        verb: 'Accept',
+        nextStatus: 'IN_PROGRESS'
+      },
+      'IN_PROGRESS' : {
+        verb: 'Complete',
+        nextStatus: 'COMPLETE'
+      },
+      'COMPLETE': {
+        verb: 'Re-open',
+        nextStatus: 'IN_PROGRESS'
+      }
+    }
+  };
+  
+  if(!typeMap.hasOwnProperty(item.item_type)) {
+    console.log('WARNING -- getNextStatus on type that DNE.');
+    return null;
+  }
+
+  const statusMap = typeMap[item.item_type];
+  if(!statusMap.hasOwnProperty(item.status)) {
+    // This is okay -- some states are dead ends.
+    return null;
+  }
+  return statusMap[item.status];
+}
+
 // Action creators
 let item_id = 0;
 export const addTask = (title) => {
   const action = {
-    type: 'ADD_ITEM',
+    type: 'ADD_TASK',
     item_type: 'TASK',
+    title,
+    status: 'NEW',
+    id: item_id
+  };
+  item_id++;
+  return action;
+}
+export const addThought = (title) => {
+  const action = {
+    type: 'ADD_THOUGHT',
+    item_type: 'THOUGHT',
     title,
     status: 'NEW',
     id: item_id
@@ -35,10 +86,12 @@ export const setFilter = (filter) => {
 
 // Reducers
 function items(state = [], action) {
-  switch (action.type) {
-    case 'ADD_ITEM':
-      const {item_type, title, status, id} = action;
-      return [...state, { item_type, title, status, id }];
+  const {type, ...rest} = action;
+  switch (type) {
+    case 'ADD_TASK':
+      return [...state, { ...rest }];
+    case 'ADD_THOUGHT':
+      return [...state, { ...rest }];
     case 'DELETE_ITEM':
       return state.filter(item => item.id !== action.id);
     case 'SET_ITEM_STATUS':

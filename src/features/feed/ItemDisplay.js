@@ -1,23 +1,19 @@
-import styles from './ItemDisplay.module.scss';
-import Button from '../common/Button';
+import styles from './ItemDisplay.module.scss'
+import { getNextStatus } from './itemsSlice';
+import Button from '../common/Button'
 
-export default function ItemDisplay({title, items, nextText, nextStatus, setItemStatus, deleteItem}) {
+export default function ItemDisplay ({item, setItemStatus, deleteItem}) {
+  const next = getNextStatus(item);
+
   return (
-  <div className={styles.itemsDisplay}> 
-    <h2>{title}</h2>
-     <dl>
-      {items.map(item => {
-      console.log(item);
-      return (
-        <dt key={item.id}>
-          {item.title}
-          <span>
-            <Button onClick={() => setItemStatus(item.id, nextStatus)}>{nextText}</Button>
-            <Button onClick={() => deleteItem(item.id)}>x</Button>
-          </span>
-        </dt>
-      )})}
-    </dl>
-  </div>
+  <>
+  {item.title}
+  <span>
+    {next !== null && (
+      <Button onClick={() => setItemStatus(item.id, next.nextStatus)}>{next.verb}</Button>
+    )}
+    <Button onClick={() => deleteItem(item.id)}>x</Button>
+  </span>
+  </>
   );
 }
