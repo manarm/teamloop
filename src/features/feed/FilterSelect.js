@@ -5,9 +5,9 @@ export default function FilterSelect({itemFilter, setFilter}){
   return (
   <div className={styles.filter}>
     <p>Display:</p>
-    {['all', 'in_progress', 'complete'].map(name => {
+    {['all', 'new', 'in_progress', 'complete'].map(name => {
       const standOut = name.toUpperCase() === itemFilter;
-      return <Button key={name} standOut={standOut} onClick={() => setFilter(name.toUpperCase())}>{name}</Button> 
+      return <Button key={name} standOut={standOut} onClick={() => setFilter(name.toUpperCase())}>{name.replace('_', ' ')}</Button> 
     })} 
   </div>
 )}

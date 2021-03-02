@@ -7,7 +7,7 @@ export const addItem = (item) => {
     type: 'ADD_ITEM',
     item_type: 'TASK',
     item,
-    status: 'IN_PROGRESS',
+    status: 'NEW',
     id: item_id
   };
   item_id++;
