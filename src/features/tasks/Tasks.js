@@ -25,23 +25,29 @@ function Tasks({tasks, taskFilter, setFilter, addTask, deleteTask, setCompleteTa
           return <Button key={name} standOut={standOut} onClick={() => setFilter(name.toUpperCase())}>{name}</Button> 
         })} 
       </div>
-      <dl>
-        {uncompletedTasks.map(task => (
-          <dt key={task.id}>
-            <input type="checkbox" onChange={() => setCompleteTask(task.id, true)}/>
-            <p>{task.item}</p>
-            <Button onClick={() => deleteTask(task.id)}>x</Button>
-          </dt>
-        ))}
-      {completedTasks.length > 0 && 
-        completedTasks.map(task => (
+      <div className={styles.itemsDisplay}>
+        <dl>
+          {uncompletedTasks.map(task => (
             <dt key={task.id}>
-              <input type="checkbox" checked={true} onChange={() => setCompleteTask(task.id, false)}/>
-              <p className={styles.completedTask}>{task.item}</p>
+              <span>
+                <input type="checkbox" onChange={() => setCompleteTask(task.id, true)}/>
+                {task.item}
+              </span>
               <Button onClick={() => deleteTask(task.id)}>x</Button>
             </dt>
           ))}
-      </dl>
+        {completedTasks.length > 0 && 
+          completedTasks.map(task => (
+              <dt key={task.id}>
+                <span>
+                  <input type="checkbox" checked={true} onChange={() => setCompleteTask(task.id, false)}/>
+                  <span className={styles.completedTask}>{task.item}</span>
+                  </span>
+                <Button onClick={() => deleteTask(task.id)}>x</Button>
+              </dt>
+            ))}
+        </dl>
+      </div>
     </div>
   );
 }

@@ -1,14 +1,15 @@
 .header {
-  padding: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--highlight-green);
 
   h1 {
     color: white;
+    background-color: var(--highlight-green);
     display: inline-block;
-    padding: 0;
+    padding: 1rem;
     margin: 0;
   }
 }
