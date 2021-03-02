@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 
 import './App.css';
 import store from './store';
-import Tasks from '../features/tasks/Tasks';
+import Home from '../features/feed/Home';
 
 class App extends React.Component {
   componentDidMount = () => {
@@ -17,7 +17,7 @@ class App extends React.Component {
 
   render = () => (
   <Provider store={store}>
-    <Tasks />
+    <Home />
   </Provider>
   );
 }
