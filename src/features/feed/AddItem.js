@@ -3,17 +3,28 @@ import styles from './AddItem.module.scss';
 import Modal from 'react-modal';
 import Button from '../common/Button';
 import TaskForm from './AddTaskForm';
+import ThoughtForm from './AddThoughtForm';
 
 export default function AddItem({addTask, addThought}) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [itemType, setItemType] = useState('task');
 
   // For a11y.
   Modal.setAppElement('#root');
 
-  const handleAddThought = () => addThought('yo');
-
   const handleCloseModal = () => {
     setModalIsOpen(false);
+  }
+
+  const getForm = () => {
+    switch(itemType) {
+      case 'task' :
+        return <TaskForm onAdd={addTask} closeForm={handleCloseModal}/>;
+      case 'thought':
+        return <ThoughtForm onAdd={addThought} closeForm={handleCloseModal}/>;
+      default:
+        return null;
+    }
   }
 
   return (
@@ -25,18 +36,18 @@ export default function AddItem({addTask, addThought}) {
     </div>
 
     <div className={styles.formFields}>
-      <div>
+      <div className={styles.formHeader}>
         <label htmlFor="itemType">Type</label>
-        <select name="itemType" id="itemType">
+        <select name="itemType" id="itemType" value={itemType} onChange={e => setItemType(e.target.value)}>
           <option value="task">Task</option>
+          <option value="thought">Thought</option>
         </select>
       </div>
-      <TaskForm onAdd={addTask} closeForm={handleCloseModal}/>
+      {getForm()}
     </div>
   </Modal>
   <div className={styles.addItem}>
     <Button onClick={() => setModalIsOpen(true)}>Add Item</Button>
-    <Button onClick={handleAddThought}>Add Thought</Button>
   </div>
   </>
   );

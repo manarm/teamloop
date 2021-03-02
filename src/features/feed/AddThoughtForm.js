@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './AddItem.module.scss'
 import Button from '../common/Button'
 
-export default function AddTaskForm({onAdd, closeForm}) {
+export default function AddThoughtForm({onAdd, closeForm}) {
   const [title, setTitle] = useState('');
 
   const handleAddClick = () => {
@@ -22,14 +22,16 @@ export default function AddTaskForm({onAdd, closeForm}) {
 
   return(
   <div>
-    <label htmlFor="taskname">Task Title</label>
-    <input 
-      id="taskname" 
-      type='text' 
-      value={title} 
-      onKeyPress={handleKeyPress} 
-      onChange={e => setTitle(e.target.value)} 
-    />
+    <div>
+      <label htmlFor="taskname">Thought Title</label>
+      <input 
+        id="taskname" 
+        type='text' 
+        value={title} 
+        onKeyPress={handleKeyPress} 
+        onChange={e => setTitle(e.target.value)} 
+      />
+    </div>
     <div className={styles.submitControls}>
       <Button onClick={() => closeForm()}>Cancel</Button>
       <Button onClick={handleAddClick}>Add</Button>
