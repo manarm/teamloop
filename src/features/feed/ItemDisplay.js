@@ -1,4 +1,4 @@
-import styles from './ItemDisplay.module.scss'
+//import styles from './ItemDisplay.module.scss'
 import { getNextStatus } from './itemsSlice';
 import Button from '../common/Button'
 
