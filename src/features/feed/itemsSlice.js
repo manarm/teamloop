@@ -2,11 +2,11 @@ import { combineReducers } from 'redux';
 
 // Action creators
 let item_id = 0;
-export const addItem = (item) => {
+export const addTask = (title) => {
   const action = {
     type: 'ADD_ITEM',
     item_type: 'TASK',
-    item,
+    title,
     status: 'NEW',
     id: item_id
   };
@@ -37,8 +37,8 @@ export const setFilter = (filter) => {
 function items(state = [], action) {
   switch (action.type) {
     case 'ADD_ITEM':
-      const {item_type, item, status, id} = action;
-      return [...state, { item_type, item, status, id }];
+      const {item_type, title, status, id} = action;
+      return [...state, { item_type, title, status, id }];
     case 'DELETE_ITEM':
       return state.filter(item => item.id !== action.id);
     case 'SET_ITEM_STATUS':

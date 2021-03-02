@@ -3,15 +3,20 @@ import styles from './AddItem.module.scss';
 import Modal from 'react-modal';
 import Button from '../common/Button';
 
-export default function AddItem({addItem}) {
+export default function AddItem({addTask}) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [taskField, setTaskField] = useState('');
+
+  // TEMPORARY 
+  const handleAddThought = () => {
+    console.log("I'm thinking, I'm thinking...")
+  }
 
   const handleAddClick = () => {
     if(taskField.length === 0) {
       return;
     }
-    addItem(taskField);
+    addTask(taskField);
     setTaskField('');
     setModalIsOpen(false);
   }
@@ -48,6 +53,7 @@ export default function AddItem({addItem}) {
   </Modal>
   <div className={styles.addItem}>
     <Button onClick={() => setModalIsOpen(true)}>Add Item</Button>
+    <Button onClick={handleAddThought}>Add Thought</Button>
   </div>
   </>
   );

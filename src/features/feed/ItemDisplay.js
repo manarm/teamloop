@@ -6,15 +6,17 @@ export default function ItemDisplay({title, items, nextText, nextStatus, setItem
   <div className={styles.itemsDisplay}> 
     <h2>{title}</h2>
      <dl>
-      {items.map(item => (
+      {items.map(item => {
+      console.log(item);
+      return (
         <dt key={item.id}>
-          {item.item}
+          {item.title}
           <span>
             <Button onClick={() => setItemStatus(item.id, nextStatus)}>{nextText}</Button>
             <Button onClick={() => deleteItem(item.id)}>x</Button>
           </span>
         </dt>
-      ))}
+      )})}
     </dl>
   </div>
   );
