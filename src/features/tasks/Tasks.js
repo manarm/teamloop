@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import styles from './Tasks.module.css';
+import styles from './Tasks.module.scss';
 import {addTask, deleteTask, setCompleteTask, setFilter} from './tasksSlice';
 
 function Tasks({tasks, taskFilter, setFilter, addTask, deleteTask, setCompleteTask}) {
@@ -29,31 +29,31 @@ function Tasks({tasks, taskFilter, setFilter, addTask, deleteTask, setCompleteTa
   }
 
   return (
-    <div className="App">
-      <div>
+    <div className={styles.card}>
+      <div className={styles.addTask}>
         <input type='text' value={taskField} onKeyPress={handleKeyPress} onChange={e => setTaskField(e.target.value)} />
-        <button onClick={handleAddClick}>Add Task</button>
+        <button onClick={handleAddClick}>Add</button>
       </div>
-      <div className="filter">Display
+      <div className={styles.filter}>
+        <p>Display:</p>
         {['all', 'pending', 'complete'].map(name => {
           const className = name.toUpperCase() === taskFilter ? styles.active : '';
           return <button key={name} className={className} onClick={() => setFilter(name.toUpperCase())}>{name}</button> 
         })} 
-
       </div>
       <dl>
         {uncompletedTasks.map(task => (
           <dt key={task.id}>
             <input type="checkbox" onChange={() => setCompleteTask(task.id, true)}/>
-            {task.item}
+            <p>{task.item}</p>
             <button onClick={() => deleteTask(task.id)}>x</button>
           </dt>
         ))}
       {completedTasks.length > 0 && 
         completedTasks.map(task => (
-            <dt className={styles.completedTask} key={task.id}>
+            <dt key={task.id}>
               <input type="checkbox" checked={true} onChange={() => setCompleteTask(task.id, false)}/>
-              {task.item}
+              <p className={styles.completedTask}>{task.item}</p>
               <button onClick={() => deleteTask(task.id)}>x</button>
             </dt>
           ))}

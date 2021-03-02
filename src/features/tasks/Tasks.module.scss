@@ -1,0 +1,50 @@
+.completedTask {
+  text-decoration: line-through;
+}
+
+.active {
+  font-weight: bold;
+}
+
+.card {
+  display: inline-block;
+  margin: 1rem;
+  border: 1px solid black;
+  background-color:  #feffae;
+}
+
+button {
+  margin-left: auto;
+  margin-right: 0.8rem;
+  background-color: white;
+  border: none;
+}
+
+.filter {
+  margin: 0.8rem;
+
+  p {
+    display: inline;
+    padding: 0;
+    margin: 0 0.3rem 0 0;
+  }
+}
+
+.addTask {
+  margin: 0.8rem;
+  input {
+    margin-right: 0.8rem;
+  }
+}
+
+dt {
+  display: flex;
+  input {
+    background-color: red;
+  }
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
