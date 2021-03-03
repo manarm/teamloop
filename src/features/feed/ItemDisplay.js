@@ -4,7 +4,7 @@ import { getNextStatus } from './feedSlice';
 import Button from '../common/Button';
 import Badge from '../common/Badge';
 
-export default function ItemDisplay ({item, setItemStatus, deleteItem, answerQuestion}) {
+export default function ItemDisplay ({item, currentUser, setItemStatus, deleteItem, answerQuestion}) {
   const [questionState, setQuestionState] = useState(null);
   const next = getNextStatus(item);
 
@@ -48,6 +48,8 @@ export default function ItemDisplay ({item, setItemStatus, deleteItem, answerQue
     }
   }
 
+  const displayNextControl = next !== null && item.assigned_to === currentUser;
+
   return (
   <div className={styles.wrapper}>
   {getBadge()}
@@ -63,7 +65,7 @@ export default function ItemDisplay ({item, setItemStatus, deleteItem, answerQue
     { displayAnswer && questionAnswer }
   </span>
   <span className={styles.controls}>
-    {next !== null && (
+    {displayNextControl && (
       <Button onClick={handleNextClick}>{next.verb}</Button>
     )}
     <Button onClick={() => deleteItem(item.id)}>x</Button>

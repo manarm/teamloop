@@ -48,7 +48,8 @@ function Home(props) {
             setItemStatus={setItemStatus} 
             deleteItem={deleteItem}
             answerQuestion={answerQuestion}
-            title='new' />
+            title='new'
+            currentUser={currentUser} />
         </div>
       )}
       {inProgressItems.length > 0 && (
@@ -58,7 +59,8 @@ function Home(props) {
         nextStatus='COMPLETE' 
         setItemStatus={setItemStatus} 
         deleteItem={deleteItem}        
-        title='in progress' />
+        title='in progress'
+        currentUser={currentUser} />
       )}
       {completedItems.length > 0 && (
         <ItemList 
@@ -67,7 +69,8 @@ function Home(props) {
         nextStatus='IN_PROGRESS' 
         setItemStatus={setItemStatus} 
         deleteItem={deleteItem}
-        title='completed' />
+        title='completed' 
+        currentUser={currentUser} />
       )}
     </div>
   );
