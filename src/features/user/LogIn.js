@@ -1,10 +1,12 @@
+import { connect } from 'react-redux';
 import { useState } from 'react';
+import { login } from './userSlice';
 import styles from './LogIn.module.scss';
 import Button from '../common/Button';
 import UserSelector from '../common/UserSelector';
 import DemoHacks from './DemoHacks';
 
-export default function Login({login, users}) {
+function Login({login, users}) {
   const [ user, setUser ] = useState(users[0].name);
 
   const handleChangeUser = e => {
@@ -27,3 +29,11 @@ export default function Login({login, users}) {
       </div>
     </div>);
 }
+
+const mapStateToProps = (state) => {
+  return {
+    users: state.users.users,
+  }
+}
+const actionCreators = {login};
+export default connect(mapStateToProps, actionCreators)(Login);
