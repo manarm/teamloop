@@ -76,7 +76,7 @@ export const addQuestion = (title) => {
     item_type: 'QUESTION',
     title,
     status: 'NEW',
-    responseIsYes: null,
+    answerIsYes: null,
     id: item_id
   };
   item_id++;
@@ -101,6 +101,13 @@ export const setFilter = (filter) => {
     filter
   };
 }
+export const answerQuestion = (id, answerIsYes) => {
+  return {
+    type: 'ANSWER_QUESTION',
+    answerIsYes,
+    id
+  }
+}
 
 // Reducers
 function items(state = [], action) {
@@ -114,6 +121,13 @@ function items(state = [], action) {
       return state.filter(item => {
         if (item.id === action.id) {
           item.status = action.status;
+        }
+        return item;
+      })
+    case 'ANSWER_QUESTION':
+      return state.filter(item => {
+        if (item.id === action.id) {
+          item.answerIsYes = action.answerIsYes;
         }
         return item;
       })
