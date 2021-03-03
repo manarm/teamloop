@@ -3,7 +3,6 @@ import Button from './Button';
 
 export default function Header({currentUser, logout}) {
   const handleLogoutClick = () => {
-    console.log('logout');
     logout();
   }
 

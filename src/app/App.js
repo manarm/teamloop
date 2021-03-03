@@ -17,14 +17,21 @@ class App extends React.Component {
     this.unsubscribe();
   }
 
-  render = () => (
-  <Provider store={store}>
-    { store.getState().users.currentUser === null ? 
-      <LogIn login={ () => {store.dispatch(login('madison'))} }/> :
-      <Home /> 
+
+  render = () => {
+    const { users } = store.getState();
+
+    const handleLogin = user => {
+      store.dispatch(login(user))
     }
-  </Provider>
-  );
+
+    return (<Provider store={store}>
+      { users.currentUser === null ? 
+        <LogIn users={users.users} login={handleLogin}/> :
+        <Home /> 
+      }
+    </Provider>
+  )};
 }
 
 export default App;
