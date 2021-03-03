@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import styles from './Home.module.scss';
 import {addTask, addThought, addQuestion, answerQuestion, deleteItem, setItemStatus, setFilter} from './feedSlice';
+import {logout} from '../user/userSlice'
 import AddItem from './AddItem';
 import ItemList from './ItemList';
 import Header from '../common/Header'
@@ -10,14 +11,15 @@ function Home(props) {
   const {
     items, 
     itemFilter,
-    currentUser, 
     addTask, 
     addThought, 
     addQuestion, 
     answerQuestion, 
     deleteItem, 
     setItemStatus,
-    setFilter
+    setFilter,
+    currentUser, 
+    logout
   } =  props;
 
   // This will change when we have a real backend. For now, all tasks in-memory.
@@ -33,7 +35,7 @@ function Home(props) {
 
   return (
     <div className={styles.card}>
-      <Header />
+      <Header currentUser={currentUser} logout={logout} />
       <AddItem addTask={addTask} addThought={addThought} addQuestion={addQuestion} />
       <FilterSelect itemFilter={itemFilter} setFilter={setFilter}/>
       {newItems.length > 0 && (
@@ -77,5 +79,5 @@ const mapStateToProps = (state) => {
     currentUser: state.users.currentUser
   }
 }
-const actionCreators = {addTask, addThought, addQuestion, answerQuestion, deleteItem, setItemStatus, setFilter};
+const actionCreators = {addTask, addThought, addQuestion, answerQuestion, deleteItem, setItemStatus, setFilter, logout};
 export default connect(mapStateToProps, actionCreators)(Home);
