@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import styles from './LogIn.module.scss';
-import Button from '../common/Button'
-import UserSelector from '../common/UserSelector'
+import Button from '../common/Button';
+import UserSelector from '../common/UserSelector';
+import DemoHacks from './DemoHacks';
 
 export default function Login({login, users}) {
   const [ user, setUser ] = useState(users[0].name);
@@ -18,7 +19,7 @@ export default function Login({login, users}) {
     <div className={styles.container}>
       <div className={styles.login}>  
         <div className={styles.logo}>TEAMLOOP🗘</div>
-        <p className={styles.warning}>DEMO MODE</p>
+        <DemoHacks />
         <UserSelector name='us' value={user} onChange={handleChangeUser} users={users}>
           Select User: 
         </UserSelector>

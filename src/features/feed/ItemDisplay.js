@@ -22,6 +22,7 @@ export default function ItemDisplay ({item, currentUser, setItemStatus, deleteIt
   }
 
   const isQuestion = item.item_type === 'QUESTION';
+  const isAssignedToMe = item.assigned_to === currentUser;
   const questionButtons = (
   <span onChange={e => setQuestionState(e.target.value)}>
     <input type="radio" id="yes" name="question" value="yes" />
@@ -29,7 +30,7 @@ export default function ItemDisplay ({item, currentUser, setItemStatus, deleteIt
     <input type="radio" id="no" name="question" value="no" />
     <label htmlFor="no">No</label>
   </span>);
-  const displayButtons = isQuestion && item.status === 'NEW';
+  const displayButtons = isQuestion && isAssignedToMe && item.status === 'NEW';
 
   const questionAnswer = <>
     Answer: {item.answerIsYes ? 'yes' : 'no'}
@@ -48,7 +49,7 @@ export default function ItemDisplay ({item, currentUser, setItemStatus, deleteIt
     }
   }
 
-  const displayNextControl = next !== null && item.assigned_to === currentUser;
+  const displayNextControl = next !== null && isAssignedToMe;
 
   return (
   <div className={styles.wrapper}>

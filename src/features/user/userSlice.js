@@ -65,6 +65,8 @@ function users(state = init_users, action) {
         }
         return user;
       });
+    case 'SET_USERS':
+      return action.users;
     default: 
       return state;
   }

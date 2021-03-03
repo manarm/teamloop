@@ -19,6 +19,7 @@ class App extends React.Component {
 
 
   render = () => {
+    // This should probably be pulled into LogIn component.
     const { users } = store.getState();
 
     const handleLogin = user => {
@@ -27,7 +28,7 @@ class App extends React.Component {
 
     return (<Provider store={store}>
       { users.currentUser === null ? 
-        <LogIn users={users.users} login={handleLogin}/> :
+        <LogIn store={store} users={users.users} login={handleLogin}/> :
         <Home /> 
       }
     </Provider>
