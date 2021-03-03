@@ -1,15 +1,18 @@
 import { useState } from 'react';
 import styles from './AddItem.module.scss'
 import Button from '../common/Button'
+import UserSelector from '../common/UserSelector';
 
-export default function AddThoughtForm({onAdd, currentUser, closeForm}) {
+
+export default function AddThoughtForm({onAdd, currentUser, users, closeForm}) {
   const [title, setTitle] = useState('');
+  const [assignTo, setAssignTo] = useState(currentUser);
 
   const handleAddClick = () => {
     if(title.length === 0) {
       return;
     }
-    onAdd(title, currentUser, null);
+    onAdd(title, currentUser, assignTo);
     setTitle('');
     closeForm();
   }
@@ -20,9 +23,16 @@ export default function AddThoughtForm({onAdd, currentUser, closeForm}) {
     }  
   }
 
+  const handleUserChange = (e) => {
+    setAssignTo(e.target.value);
+  }
+
   return(
   <div>
     <div>
+      <UserSelector name="us" value={assignTo} onChange={handleUserChange} users={users} > 
+        Assign To:
+      </UserSelector>
       <label htmlFor="taskname">Thought Title</label>
       <input 
         id="taskname" 

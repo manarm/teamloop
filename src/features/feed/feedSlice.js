@@ -120,7 +120,6 @@ function items(state = [], action) {
   const {type, ...rest} = action;
   switch (type) {
     case 'ADD_ITEM':
-      console.log('ADD ' + action.author);
       return [...state, { ...rest }];
     case 'DELETE_ITEM':
       return state.filter(item => item.id !== action.id);

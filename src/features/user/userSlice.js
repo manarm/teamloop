@@ -30,14 +30,22 @@ export const addUserNoteAssigned = (user_id, note_id) => {
 }
 
 // Reducers
-// Dummy user
-const init_users = [{
-  name: 'manarm',
-  role: 'TEAM',
-  notes_author: [],
-  notes_assigned: [],
-  id: 0
-}]
+const init_users = [
+  {
+    name: 'madison',
+    role: 'TEAM',
+    notes_author: [],
+    notes_assigned: [],
+    id: 0
+  },
+  {
+    name: 'sam',
+    role: 'TEAM',
+    notes_author: [],
+    notes_assigned: [],
+    id: 1
+  }
+]
 function users(state = init_users, action) {
   const { type, ...rest } = action;
   switch (type) {

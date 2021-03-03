@@ -20,7 +20,7 @@ class App extends React.Component {
   render = () => (
   <Provider store={store}>
     { store.getState().users.currentUser === null ? 
-      <LogIn login={ () => {store.dispatch(login('manarm'))} }/> :
+      <LogIn login={ () => {store.dispatch(login('madison'))} }/> :
       <Home /> 
     }
   </Provider>

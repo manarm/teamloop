@@ -18,6 +18,7 @@ function Home(props) {
     deleteItem, 
     setItemStatus,
     setFilter,
+    users,
     currentUser, 
     logout
   } =  props;
@@ -36,7 +37,7 @@ function Home(props) {
   return (
     <div className={styles.card}>
       <Header currentUser={currentUser} logout={logout} />
-      <AddItem currentUser={currentUser} addTask={addTask} addThought={addThought} addQuestion={addQuestion} />
+      <AddItem users={users} currentUser={currentUser} addTask={addTask} addThought={addThought} addQuestion={addQuestion} />
       <FilterSelect itemFilter={itemFilter} setFilter={setFilter} currentUser={currentUser}/>
       {newItems.length > 0 && (
         <div className={styles.newItems}>
@@ -76,6 +77,7 @@ const mapStateToProps = (state) => {
   return {
     items: state.feed.items,
     itemFilter: state.feed.itemFilter,
+    users: state.users.users,
     currentUser: state.users.currentUser
   }
 }

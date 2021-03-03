@@ -6,7 +6,7 @@ import TaskForm from './AddTaskForm';
 import ThoughtForm from './AddThoughtForm';
 import QuestionForm from './AddQuestionForm';
 
-export default function AddItem({currentUser, addTask, addThought, addQuestion}) {
+export default function AddItem({currentUser, users, addTask, addThought, addQuestion}) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [itemType, setItemType] = useState('task');
 
@@ -25,11 +25,11 @@ export default function AddItem({currentUser, addTask, addThought, addQuestion})
   const getForm = () => {
     switch(itemType) {
       case 'task' :
-        return <TaskForm onAdd={addTask} currentUser={currentUser} closeForm={handleCloseModal}/>;
+        return <TaskForm onAdd={addTask} currentUser={currentUser} users={users} closeForm={handleCloseModal}/>;
       case 'thought':
-        return <ThoughtForm onAdd={addThought} currentUser={currentUser} closeForm={handleCloseModal}/>;
+        return <ThoughtForm onAdd={addThought} currentUser={currentUser} users={users} closeForm={handleCloseModal}/>;
       case 'question':
-        return <QuestionForm onAdd={addQuestion} currentUser={currentUser} closeForm={handleCloseModal}/>;
+        return <QuestionForm onAdd={addQuestion} currentUser={currentUser} users={users} closeForm={handleCloseModal}/>;
       default:
         return null;
     }
