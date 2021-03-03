@@ -16,10 +16,10 @@ dl {
 }
 
 dt {
-  display: flex;
-  justify-content: space-between;
-  input {
-    background-color: red;
+  border-bottom: 1px solid black;
+
+  &:last-child {
+    border: none;
   }
 }
 

@@ -1,0 +1,10 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+}
+
+.itemControls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}

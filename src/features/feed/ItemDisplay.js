@@ -1,4 +1,4 @@
-//import styles from './ItemDisplay.module.scss'
+import styles from './ItemDisplay.module.scss'
 import { useState } from 'react';
 import { getNextStatus } from './feedSlice';
 import Button from '../common/Button'
@@ -8,17 +8,18 @@ export default function ItemDisplay ({item, setItemStatus, deleteItem, answerQue
   const next = getNextStatus(item);
 
   const isQuestion = item.item_type === 'QUESTION';
-  const questionButtons = <span onChange={e => setQuestionState(e.target.value)}>
+  const questionButtons = (
+  <span onChange={e => setQuestionState(e.target.value)}>
     <input type="radio" id="yes" name="question" value="yes" />
     <label htmlFor="yes">Yes</label>
     <input type="radio" id="no" name="question" value="no" />
     <label htmlFor="no">No</label>
-  </span>
+  </span>);
   const displayButtons = isQuestion && item.status === 'NEW';
 
-  const questionAnswer = <span>
+  const questionAnswer = <>
     Answer: {item.answerIsYes ? 'yes' : 'no'}
-  </span>
+  </>
   const displayAnswer = isQuestion && item.status === 'COMPLETE';
 
   const handleNextClick = () => {
@@ -34,21 +35,24 @@ export default function ItemDisplay ({item, setItemStatus, deleteItem, answerQue
   }
 
   return (
-  <>
+  <div className={styles.wrapper}>
   <span>
     {item.title}
   </span>
   <span>
-  {` (by: ${item.author} to: ${item.assigned_to})`}
+    <div>{`by: ${item.author}`}</div>
+    <div>{`to: ${item.assigned_to}`}</div>
   </span>
-  { displayButtons && questionButtons }
-  { displayAnswer && questionAnswer }
   <span>
+    { displayButtons && questionButtons }
+    { displayAnswer && questionAnswer }
+  </span>
+  <span className={styles.itemControls}>
     {next !== null && (
       <Button onClick={handleNextClick}>{next.verb}</Button>
     )}
     <Button onClick={() => deleteItem(item.id)}>x</Button>
   </span>
-  </>
+  </div>
   );
 }
