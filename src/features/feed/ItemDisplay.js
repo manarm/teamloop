@@ -1,6 +1,6 @@
 //import styles from './ItemDisplay.module.scss'
 import { useState } from 'react';
-import { getNextStatus } from './itemsSlice';
+import { getNextStatus } from './feedSlice';
 import Button from '../common/Button'
 
 export default function ItemDisplay ({item, setItemStatus, deleteItem, answerQuestion}) {

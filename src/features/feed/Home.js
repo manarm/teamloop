@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import styles from './Home.module.scss';
-import {addTask, addThought, addQuestion, answerQuestion, deleteItem, setItemStatus} from './itemsSlice';
+import {addTask, addThought, addQuestion, answerQuestion, deleteItem, setItemStatus} from './feedSlice';
 import AddItem from './AddItem';
 import ItemList from './ItemList';
 import Header from '../common/Header'
@@ -50,7 +50,7 @@ function Home({items, addTask, addThought, addQuestion, answerQuestion, deleteIt
 
 const mapStateToProps = (state) => {
   return {
-    items: state.items,
+    items: state.feed.items,
   }
 }
 const actionCreators = {addTask, addThought, addQuestion, answerQuestion, deleteItem, setItemStatus};

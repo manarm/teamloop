@@ -34,7 +34,7 @@ export const getNextStatus = (item) => {
   };
   
   if(!typeMap.hasOwnProperty(item.item_type)) {
-    console.log('WARNING -- getNextStatus on type that DNE.');
+    console.warn('getNextStatus called on type that DNE.');
     return null;
   }
 
@@ -54,6 +54,8 @@ export const addTask = (title) => {
     item_type: 'TASK',
     title,
     status: 'NEW',
+    author: 'manarm',
+    assigned_to: 'manarm',
     id: item_id
   };
   item_id++;
@@ -65,6 +67,8 @@ export const addThought = (title) => {
     item_type: 'THOUGHT',
     title,
     status: 'NEW',
+    author: 'manarm',
+    assigned_to: 'manarm',
     id: item_id
   };
   item_id++;
@@ -77,6 +81,8 @@ export const addQuestion = (title) => {
     title,
     status: 'NEW',
     answerIsYes: null,
+    author: 'manarm',
+    assigned_to: 'manarm',
     id: item_id
   };
   item_id++;
