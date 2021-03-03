@@ -5,7 +5,7 @@ export default function Header() {
   return (
   <div className={styles.header}>
     <h1>TEAMLOOP🗘</h1>
-    <div>
+    <div className={styles.userControls}>
       <span>user</span>
       <Button>logout</Button>
     </div>
