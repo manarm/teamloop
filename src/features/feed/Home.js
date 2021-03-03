@@ -34,9 +34,14 @@ function Home(props) {
   const inProgressItems = userItems.filter(item => item.status === 'IN_PROGRESS');
   const completedItems = userItems.filter(item => item.status === 'COMPLETE');
 
+  const handleLogout = () => {
+    setFilter('ALL');
+    logout();
+  }
+
   return (
     <div className={styles.card}>
-      <Header currentUser={currentUser} logout={logout} />
+      <Header currentUser={currentUser} onLogout={handleLogout} />
       <AddItem users={users} currentUser={currentUser} addTask={addTask} addThought={addThought} addQuestion={addQuestion} />
       <FilterSelect itemFilter={itemFilter} setFilter={setFilter} currentUser={currentUser}/>
       {newItems.length > 0 && (
