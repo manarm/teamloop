@@ -16,6 +16,11 @@ export default function ItemDisplay ({item, setItemStatus, deleteItem, answerQue
   </span>
   const displayButtons = isQuestion && item.status === 'NEW';
 
+  const questionAnswer = <span>
+    Answer: {item.answerIsYes ? 'yes' : 'no'}
+  </span>
+  const displayAnswer = isQuestion && item.status === 'COMPLETE';
+
   const handleNextClick = () => {
     if(displayButtons) {
       if (questionState !== null) {
@@ -34,6 +39,7 @@ export default function ItemDisplay ({item, setItemStatus, deleteItem, answerQue
     {item.title}
   </span>
   { displayButtons && questionButtons }
+  { displayAnswer && questionAnswer }
   <span>
     {next !== null && (
       <Button onClick={handleNextClick}>{next.verb}</Button>
