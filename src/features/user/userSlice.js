@@ -62,17 +62,24 @@ function users(state = init_users, action) {
   }
 }
 
-export const setCurrentUser = (user) => {
+export const login = (user) => {
   return {
     type: 'SET_CURRENT_USER',
     user
   };
 }
+export const logout = () => {
+  return {
+    type: 'LOGOUT',
+  };
+}
 
-function currentUser(state = 'manarm', action) {
+function currentUser(state = null, action) {
   switch (action.type) {
     case 'SET_CURRENT_USER':
       return action.user;
+    case 'LOGOUT':
+      return null;
     default:
       return state;
   }
