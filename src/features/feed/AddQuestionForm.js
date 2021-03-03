@@ -2,14 +2,16 @@ import { useState } from 'react';
 import styles from './AddItem.module.scss'
 import Button from '../common/Button'
 
-export default function AddQuestionForm({onAdd, closeForm}) {
+export default function AddQuestionForm({onAdd, currentUser, closeForm}) {
   const [title, setTitle] = useState('');
 
   const handleAddClick = () => {
     if(title.length === 0) {
       return;
     }
-    onAdd(title);
+    // FIXME assigned field
+    console.log('user ' + currentUser)
+    onAdd(title, currentUser, null);
     setTitle('');
     closeForm();
   }

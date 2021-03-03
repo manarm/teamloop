@@ -48,41 +48,41 @@ export const getNextStatus = (item) => {
 
 // Action creators
 let item_id = 0;
-export const addTask = (title) => {
+export const addTask = (title, author, assigned_to) => {
   const action = {
     type: 'ADD_ITEM',
     item_type: 'TASK',
     title,
     status: 'NEW',
-    author: 'manarm',
-    assigned_to: 'manarm',
+    author,
+    assigned_to,
     id: item_id
   };
   item_id++;
   return action;
 }
-export const addThought = (title) => {
+export const addThought = (title, author, assigned_to) => {
   const action = {
     type: 'ADD_ITEM',
     item_type: 'THOUGHT',
     title,
     status: 'NEW',
-    author: 'barry',
-    assigned_to: 'manarm',
+    author,
+    assigned_to,
     id: item_id
   };
   item_id++;
   return action;
 }
-export const addQuestion = (title) => {
+export const addQuestion = (title, author, assigned_to) => {
   const action = {
     type: 'ADD_ITEM',
     item_type: 'QUESTION',
     title,
     status: 'NEW',
     answerIsYes: null,
-    author: 'manarm',
-    assigned_to: 'manarm',
+    author,
+    assigned_to,
     id: item_id
   };
   item_id++;
@@ -120,6 +120,7 @@ function items(state = [], action) {
   const {type, ...rest} = action;
   switch (type) {
     case 'ADD_ITEM':
+      console.log('ADD ' + action.author);
       return [...state, { ...rest }];
     case 'DELETE_ITEM':
       return state.filter(item => item.id !== action.id);

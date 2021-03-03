@@ -1,19 +1,19 @@
 import styles from './FilterSelect.module.scss';
 import Button from '../common/Button';
 
-export default function FilterSelect({itemFilter, setFilter}){
+export default function FilterSelect({itemFilter, setFilter, currentUser}){
   const filters = [
     {
       display: 'All',
       filter: 'ALL'
     },
     {
-      display: 'My Notes',
-      filter: 'CURRENT_AUTHOR'
+      display: 'assigned to: ' + currentUser,
+      filter: 'CURRENT_ASSIGNED'
     },
     {
-      display: 'Assigned to me',
-      filter: 'CURRENT_ASSIGNED'
+      display: 'author: ' + currentUser,
+      filter: 'CURRENT_AUTHOR'
     }
   ]
 

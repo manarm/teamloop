@@ -2,14 +2,14 @@ import { useState } from 'react';
 import styles from './AddItem.module.scss'
 import Button from '../common/Button'
 
-export default function AddThoughtForm({onAdd, closeForm}) {
+export default function AddThoughtForm({onAdd, currentUser, closeForm}) {
   const [title, setTitle] = useState('');
 
   const handleAddClick = () => {
     if(title.length === 0) {
       return;
     }
-    onAdd(title);
+    onAdd(title, currentUser, null);
     setTitle('');
     closeForm();
   }

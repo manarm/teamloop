@@ -24,9 +24,9 @@ function Home(props) {
 
   // This will change when we have a real backend. For now, all tasks in-memory.
   const userItems = items.filter(item => {
-    const authorItem = itemFilter === 'CURRENT_AUTHOR' && item.author === currentUser;
-    const assignedItem = itemFilter === 'CURRENT_ASSIGNED' && item.assigned_to === currentUser;
-    return itemFilter === 'ALL' || authorItem || assignedItem;
+    const authorItem = ['ALL', 'CURRENT_AUTHOR'].includes(itemFilter) && item.author === currentUser;
+    const assignedItem = ['ALL', 'CURRENT_ASSIGNED'].includes(itemFilter) && item.assigned_to === currentUser;
+    return authorItem || assignedItem;
   });
 
   const newItems = userItems.filter(item => item.status === 'NEW');
@@ -36,8 +36,8 @@ function Home(props) {
   return (
     <div className={styles.card}>
       <Header currentUser={currentUser} logout={logout} />
-      <AddItem addTask={addTask} addThought={addThought} addQuestion={addQuestion} />
-      <FilterSelect itemFilter={itemFilter} setFilter={setFilter}/>
+      <AddItem currentUser={currentUser} addTask={addTask} addThought={addThought} addQuestion={addQuestion} />
+      <FilterSelect itemFilter={itemFilter} setFilter={setFilter} currentUser={currentUser}/>
       {newItems.length > 0 && (
         <div className={styles.newItems}>
           <ItemList 
