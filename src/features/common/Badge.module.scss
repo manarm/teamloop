@@ -1,0 +1,19 @@
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bolder;
+  color: black;
+}
+
+.task {
+  background-color: var(--highlight-purple)
+}
+
+.thought {
+  background-color: var(--highlight-green)
+}
+
+.question {
+  background-color: var(--highlight-blue)
+}

@@ -1,11 +1,25 @@
 import styles from './ItemDisplay.module.scss'
 import { useState } from 'react';
 import { getNextStatus } from './feedSlice';
-import Button from '../common/Button'
+import Button from '../common/Button';
+import Badge from '../common/Badge';
 
 export default function ItemDisplay ({item, setItemStatus, deleteItem, answerQuestion}) {
   const [questionState, setQuestionState] = useState(null);
   const next = getNextStatus(item);
+
+  const getBadge = () => {
+    switch(item.item_type) {
+      case 'TASK':
+        return <Badge.Task />
+      case 'THOUGHT':
+        return <Badge.Thought />
+      case 'QUESTION':
+        return <Badge.Question />
+      default:
+        return null;
+    }
+  }
 
   const isQuestion = item.item_type === 'QUESTION';
   const questionButtons = (
@@ -36,7 +50,8 @@ export default function ItemDisplay ({item, setItemStatus, deleteItem, answerQue
 
   return (
   <div className={styles.wrapper}>
-  <span>
+  {getBadge()}
+  <span className={styles.title}>
     {item.title}
   </span>
   <span>
@@ -47,7 +62,7 @@ export default function ItemDisplay ({item, setItemStatus, deleteItem, answerQue
     { displayButtons && questionButtons }
     { displayAnswer && questionAnswer }
   </span>
-  <span className={styles.itemControls}>
+  <span className={styles.controls}>
     {next !== null && (
       <Button onClick={handleNextClick}>{next.verb}</Button>
     )}

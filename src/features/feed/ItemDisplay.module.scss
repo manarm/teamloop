@@ -1,10 +1,14 @@
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0,1fr));
+  grid-template-columns: 30px repeat(4, minmax(0,1fr));
 }
 
-.itemControls {
+.controls {
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
+}
+
+.title {
+  padding-left: 0.3rem;
 }
