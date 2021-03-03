@@ -67,7 +67,7 @@ export const addThought = (title) => {
     item_type: 'THOUGHT',
     title,
     status: 'NEW',
-    author: 'manarm',
+    author: 'barry',
     assigned_to: 'manarm',
     id: item_id
   };

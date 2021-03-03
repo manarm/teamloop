@@ -38,6 +38,9 @@ export default function ItemDisplay ({item, setItemStatus, deleteItem, answerQue
   <span>
     {item.title}
   </span>
+  <span>
+  {` (by: ${item.author} to: ${item.assigned_to})`}
+  </span>
   { displayButtons && questionButtons }
   { displayAnswer && questionAnswer }
   <span>
