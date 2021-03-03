@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import styles from './Home.module.scss';
-import {addTask, addThought, deleteItem, setItemStatus} from './itemsSlice';
+import {addTask, addThought, addQuestion, deleteItem, setItemStatus} from './itemsSlice';
 import AddItem from './AddItem';
 import ItemList from './ItemList';
 import Header from '../common/Header'
 
-function Home({items, addTask, addThought, deleteItem, setItemStatus}) {
+function Home({items, addTask, addThought, addQuestion, deleteItem, setItemStatus}) {
   const newItems = items.filter(item => item.status === 'NEW');
   const inProgressItems = items.filter(item => item.status === 'IN_PROGRESS');
   const completedItems = items.filter(item => item.status === 'COMPLETE');
@@ -13,7 +13,7 @@ function Home({items, addTask, addThought, deleteItem, setItemStatus}) {
   return (
     <div className={styles.card}>
       <Header />
-      <AddItem addTask={addTask} addThought={addThought} />
+      <AddItem addTask={addTask} addThought={addThought} addQuestion={addQuestion}/>
       {newItems.length > 0 && (
         <div className={styles.newItems}>
           <ItemList 
@@ -52,5 +52,5 @@ const mapStateToProps = (state) => {
     items: state.items,
   }
 }
-const actionCreators = {addTask, addThought, deleteItem, setItemStatus};
+const actionCreators = {addTask, addThought, addQuestion, deleteItem, setItemStatus};
 export default connect(mapStateToProps, actionCreators)(Home);

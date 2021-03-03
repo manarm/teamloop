@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-// Utility
+// Utilities
 // Status state machine, unique per-type.
 // type => status => [verb, nextStatus]
 export const getNextStatus = (item) => {
@@ -24,6 +24,12 @@ export const getNextStatus = (item) => {
         verb: 'Re-open',
         nextStatus: 'IN_PROGRESS'
       }
+    },
+    'QUESTION': {
+      'NEW' : {
+        verb: 'Answer',
+        nextStatus: 'COMPLETE'
+      }
     }
   };
   
@@ -44,7 +50,7 @@ export const getNextStatus = (item) => {
 let item_id = 0;
 export const addTask = (title) => {
   const action = {
-    type: 'ADD_TASK',
+    type: 'ADD_ITEM',
     item_type: 'TASK',
     title,
     status: 'NEW',
@@ -55,10 +61,22 @@ export const addTask = (title) => {
 }
 export const addThought = (title) => {
   const action = {
-    type: 'ADD_THOUGHT',
+    type: 'ADD_ITEM',
     item_type: 'THOUGHT',
     title,
     status: 'NEW',
+    id: item_id
+  };
+  item_id++;
+  return action;
+}
+export const addQuestion = (title) => {
+  const action = {
+    type: 'ADD_ITEM',
+    item_type: 'QUESTION',
+    title,
+    status: 'NEW',
+    responseIsYes: null,
     id: item_id
   };
   item_id++;
@@ -88,9 +106,7 @@ export const setFilter = (filter) => {
 function items(state = [], action) {
   const {type, ...rest} = action;
   switch (type) {
-    case 'ADD_TASK':
-      return [...state, { ...rest }];
-    case 'ADD_THOUGHT':
+    case 'ADD_ITEM':
       return [...state, { ...rest }];
     case 'DELETE_ITEM':
       return state.filter(item => item.id !== action.id);

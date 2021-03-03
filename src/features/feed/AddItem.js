@@ -5,7 +5,7 @@ import Button from '../common/Button';
 import TaskForm from './AddTaskForm';
 import ThoughtForm from './AddThoughtForm';
 
-export default function AddItem({addTask, addThought}) {
+export default function AddItem({addTask, addThought, addQuestion}) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [itemType, setItemType] = useState('task');
 
@@ -48,6 +48,7 @@ export default function AddItem({addTask, addThought}) {
   </Modal>
   <div className={styles.addItem}>
     <Button onClick={() => setModalIsOpen(true)}>Add Item</Button>
+    <Button onClick={() => addQuestion('u no?')}>Add Question</Button>
   </div>
   </>
   );
