@@ -1,0 +1,14 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 30px repeat(4, minmax(0,1fr));
+}
+
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.title {
+  padding-left: 0.3rem;
+}
