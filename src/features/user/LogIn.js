@@ -23,9 +23,11 @@ function Login({login, users}) {
       <div className={styles.logo}>TEAMLOOP🗘</div>
       <div className={styles.controls}>
         <DemoHacks />
-        <UserSelector name='us' value={user} onChange={handleChangeUser} users={users}>
-          Select User: 
-        </UserSelector>
+        <div>
+          <UserSelector name='us' value={user} onChange={handleChangeUser} users={users}>
+            Select User 
+          </UserSelector>
+        </div>
         <Button onClick={handleLoginClick}>Log In</Button>
       </div>
     </div>

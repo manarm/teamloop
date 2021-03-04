@@ -144,7 +144,7 @@ function items(state = [], action) {
   }
 }
 
-function itemFilter(state = 'ALL', action) {
+function itemFilter(state = 'INBOX', action) {
   switch (action.type) {
     case 'SET_FILTER':
       return action.filter;
