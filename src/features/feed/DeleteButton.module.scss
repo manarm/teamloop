@@ -41,6 +41,8 @@ strong {
   font-size: 1.3rem;
 }
 
-.deleteButton:hover {
-  background-color: var(--highlight-red);
+.deleteButton {
+  button:hover {
+    background-color: var(--highlight-red);
+  }
 }

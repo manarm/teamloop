@@ -23,7 +23,9 @@ export default function DeleteButton({item, deleteItem, children}) {
       </div>
       <div className={styles.controls}>
         <Button onClick={() => setModalIsOpen(false)}>Cancel</Button>
-        <Button onClick={handleDeleteClick}>Delete</Button>
+        <div className={styles.deleteButton}>
+          <Button onClick={handleDeleteClick}>Delete</Button>
+        </div>
       </div>
     </Modal>
     <Button onClick={() => setModalIsOpen(true)}>{children}</Button>
