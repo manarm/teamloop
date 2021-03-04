@@ -4,25 +4,43 @@ h3 {
 
 .block {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: 30px repeat(9, 1fr);
+  gap: 0.5rem;
+  border: 1px solid black;
+  padding: 0.5rem;
+  font-size: 0.8rem;
 }
 .badge {
   grid-column: 1 / 2;
   display: flex;
   justify-content: center;
+  align-items: center;
+  font-size: 1rem;
 }
 .title {
-  grid-column: 2 / 8;
+  grid-column: 2 / 10;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  border-bottom: 1px solid black;
 }
 .close {
-  grid-column: 8 / 9;
+  grid-column: 10 / 11;
+  display: flex;
+  justify-content: flex-end;
 }
 .meta {
-  grid-column: 2 / 5;
+  grid-column: 2 / 4;
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
 }
 .content {
-  grid-column: 5 / 9;
+  grid-column: 4 / 10;
 }
 .controls {
-  grid-column: 8 / 9;
+  grid-column: 9 / 11;
+  display: flex;
+  justify-content: flex-end;
 }
