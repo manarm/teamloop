@@ -62,7 +62,7 @@ const getNextItemAction = (item_type, title, author, assigned_to, description) =
   item_id++;
   return action;
 }
-export const addItem = (item_type, title, author, assigned_to, description) => {
+export const addItem = ({item_type, title, author, assigned_to, description}) => {
   return { 
     ...getNextItemAction(item_type, title, author, assigned_to, description), 
   };
