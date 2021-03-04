@@ -28,7 +28,7 @@ export default function AddQuestionForm({onAdd, currentUser, users, closeForm}) 
   return(
   <>
     <UserSelector name="us" value={assignTo} onChange={handleUserChange} users={users} > 
-      Assign To
+      To
     </UserSelector>
     <label htmlFor="taskname">Question Title</label>
     <input 

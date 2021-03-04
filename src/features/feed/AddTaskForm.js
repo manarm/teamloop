@@ -29,7 +29,7 @@ export default function AddTaskForm({onAdd, currentUser, users, closeForm}) {
   return(
   <>
     <UserSelector name="us" value={assignTo} onChange={handleUserChange} users={users} > 
-      Assign To
+      To
     </UserSelector>
     <label htmlFor="taskname">Task Title</label>
     <input 
