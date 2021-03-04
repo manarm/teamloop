@@ -28,6 +28,8 @@ export default function DeleteButton({item, deleteItem, children}) {
         </div>
       </div>
     </Modal>
-    <Button onClick={() => setModalIsOpen(true)}>{children}</Button>
+    <span className={styles.deleteButton}>
+      <Button onClick={() => setModalIsOpen(true)}>{children}</Button>
+    </span>
     </>;
 }

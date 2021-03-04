@@ -10,13 +10,15 @@ export default function ItemDisplay ({item, currentUser, setItemStatus, deleteIt
   return isExpanded ?
   <ItemDisplayBlock 
     item={item}
+    setItemStatus={setItemStatus}
+    deleteItem={deleteItem}
+    currentUser={currentUser}
     onClose={ () => setIsExpanded(false) }
   /> :  
   <ItemDisplayLine 
     item={item} 
     currentUser={currentUser} 
     setItemStatus={setItemStatus} 
-    deleteItem={deleteItem} 
     answerQuestion={answerQuestion}
     onExpand={() => setIsExpanded(true)} 
   />
