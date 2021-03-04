@@ -1,7 +1,13 @@
 import { getNextStatus } from './feedSlice';
 import Button from '../common/Button';
 
-export default function AdvanceItemButton({item, verifyAndAnswer, setItemStatus, currentUser}) {
+export default function AdvanceItemButton(props) {
+  const {
+    item, 
+    verifyAndAnswer = () => true, 
+    setItemStatus, 
+    currentUser
+  } = props;
   const isAssignedToMe = item.assigned_to === currentUser;
   const next = getNextStatus(item);
 
