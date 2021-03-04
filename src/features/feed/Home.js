@@ -89,7 +89,9 @@ function Home(props) {
       <div className={styles.content}>
         <AddItem users={users} currentUser={currentUser} addTask={addTask} addThought={addThought} addQuestion={addQuestion} />
         <FilterSelect itemFilter={itemFilter} setFilter={setFilter}/>
-        {itemLists ? itemLists : <NoContent />}
+        <div className={styles.itemLists}>
+          {itemLists ? itemLists : <NoContent />}
+        </div>
       </div>
       <Footer/>
     </div>
