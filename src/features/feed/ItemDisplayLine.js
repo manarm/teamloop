@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { getNextStatus } from './feedSlice';
 import Button from '../common/Button';
 import Badge from '../common/Badge';
-import DeleteButton from './DeleteButton';
 
 export default function ItemDisplayLine({item, currentUser, setItemStatus, deleteItem, answerQuestion, onExpand}) {
   const [questionState, setQuestionState] = useState(null);
@@ -39,12 +38,18 @@ export default function ItemDisplayLine({item, currentUser, setItemStatus, delet
 
   const displayNextControl = next !== null && isAssignedToMe;
 
+  const displayTitle = item.title.length > 30 ?
+    item.title.substring(0,30) + '...' :
+    item.title;
+
   return (
   <div className={styles.wrapper}>
-  <Badge type={item.item_type} />
-  <span className={styles.title}>
-    {item.title}
-  </span>
+  <button onClick={onExpand} className={styles.titleButton}>
+    <Badge type={item.item_type} />
+    <span className={styles.title}>
+      {displayTitle}
+    </span>
+  </button>
   <span>
     <div>{`by: ${item.author}`}</div>
     <div>{`to: ${item.assigned_to}`}</div>
@@ -54,11 +59,10 @@ export default function ItemDisplayLine({item, currentUser, setItemStatus, delet
     { displayAnswer && questionAnswer }
   </span>
   <span className={styles.controls}>
+    <Button onClick={onExpand}>Expand</Button>
     {displayNextControl && (
       <Button onClick={handleNextClick}>{next.verb}</Button>
     )}
-  <DeleteButton item={item} deleteItem={deleteItem}>x</DeleteButton>
-  <Button onClick={onExpand}>Expand</Button>
   </span>
   </div>
   );
