@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import { login } from './userSlice';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUndoAlt } from '@fortawesome/free-solid-svg-icons'
 import styles from './LogIn.module.scss';
 import Button from '../common/Button';
 import UserSelector from '../common/UserSelector';
@@ -20,7 +22,7 @@ function Login({login, users}) {
   return (
     <div className={styles.container}>
       <div className={styles.login}>  
-      <div className={styles.logo}>TEAMLOOP🗘</div>
+      <div className={styles.logo}><FontAwesomeIcon icon={faUndoAlt} />TEAMLOOP</div>
       <div className={styles.controls}>
         <DemoHacks />
         <div>

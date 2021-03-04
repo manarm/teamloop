@@ -1,13 +1,14 @@
 .header {
-  padding-left: 1rem;
-  padding-right: 1rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid black;
+  align-items: stretch;
+  background-color: var(--highlight-green);
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding-right: 0.3rem;
 
   h1 {
-    color: white;
+    color: var(--highlight-red);
     background-color: var(--highlight-green);
     font-family: 'Prompt', sans-serif;
     font-weight: bolder;
@@ -15,5 +16,27 @@
     display: inline-block;
     padding: 1rem;
     margin: 0;
+  }
+}
+
+.userControls {
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--highlight-green);
+  color: var(--highlight-red);
+
+  button {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    background-color: var(--highlight-green);
+
+    &:hover {
+      background-color: var(--highlight-green);
+    }
   }
 }
