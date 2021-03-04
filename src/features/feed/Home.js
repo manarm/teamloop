@@ -5,6 +5,7 @@ import {logout} from '../user/userSlice'
 import AddItem from './AddItem';
 import ItemList from './ItemList';
 import Header from '../common/Header'
+import Footer from '../common/Footer'
 import FilterSelect from './FilterSelect'
 
 function Home(props) {
@@ -77,6 +78,7 @@ function Home(props) {
         title='completed' 
         currentUser={currentUser} />
       )}
+      <Footer/>
     </div>
   );
 }
