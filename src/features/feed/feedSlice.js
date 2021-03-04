@@ -82,9 +82,10 @@ export const addQuestion = (title, author, assigned_to) => {
     item_type: 'QUESTION',
     title,
     status: 'NEW',
-    answerIsYes: null,
+    answer: null,
     author,
     assigned_to,
+    description: 'question description',
     id: item_id
   };
   item_id++;
@@ -109,10 +110,10 @@ export const setFilter = (filter) => {
     filter
   };
 }
-export const answerQuestion = (id, answerIsYes) => {
+export const answerQuestion = (id, answer) => {
   return {
     type: 'ANSWER_QUESTION',
-    answerIsYes,
+    answer,
     id
   }
 }
@@ -133,9 +134,10 @@ function items(state = [], action) {
         return item;
       })
     case 'ANSWER_QUESTION':
+      console.log('redux answer ' + action.answer);
       return state.filter(item => {
         if (item.id === action.id) {
-          item.answerIsYes = action.answerIsYes;
+          item.answer = action.answer;
         }
         return item;
       })

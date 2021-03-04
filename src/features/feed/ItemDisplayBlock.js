@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styles from './ItemDisplayBlock.module.scss';
 import Badge from '../common/Badge'
 import Button from '../common/Button';
@@ -5,16 +6,36 @@ import AdvanceItemButton from './AdvanceItemButton';
 import DeleteButton from './DeleteButton';
 import QuestionDisplay from './QuestionDisplay';
 
-export default function ItemDisplayBlock({item, setItemStatus, deleteItem, currentUser, onClose}) {
+export default function ItemDisplayBlock({item, setItemStatus, deleteItem, currentUser, answerQuestion, onClose}) {
+  const [answer, setAnswer] = useState(null);
+
   const content = () => {
     switch (item.item_type) {
       case 'TASK':
       case 'THOUGHT':
         return item.description;
       case 'QUESTION':
-        return <QuestionDisplay />
+        return <QuestionDisplay 
+          item={item} 
+          currentUser={currentUser}
+          answer={answer}
+          setAnswer={setAnswer}
+        />
       default:
         return null;
+    }
+  }
+
+  const verifyAndAnswer = () => {
+    if(item.item_type === 'QUESTION') {
+      if (answer !== null) {
+        answerQuestion(item.id, answer);
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
     }
   }
   
@@ -30,7 +51,7 @@ export default function ItemDisplayBlock({item, setItemStatus, deleteItem, curre
     </ul></div>
     <div className={styles.content}>{content()}</div>
     <div className={styles.controls}>
-      <AdvanceItemButton item={item} setItemStatus={setItemStatus} currentUser={currentUser}/>
+      <AdvanceItemButton item={item} verifyAndAnswer={verifyAndAnswer} setItemStatus={setItemStatus} currentUser={currentUser}/>
       <DeleteButton item={item} deleteItem={deleteItem}>Delete</DeleteButton>
     </div>
   </div>;
