@@ -7,6 +7,7 @@ import ItemList from './ItemList';
 import Header from '../common/Header'
 import Footer from '../common/Footer'
 import FilterSelect from './FilterSelect'
+import NoContent from '../common/NoContent';
 
 function Home(props) {
   const {
@@ -38,9 +39,14 @@ function Home(props) {
   });
 
   const getItemLists = () => {
+    if (!displayItems.length) {
+      return null;
+    }
+
     if (['INBOX', 'OUTBOX'].includes(itemFilter)) {
       const newItems = displayItems.filter(item => item.status === 'NEW');
       const inProgressItems = displayItems.filter(item => item.status === 'IN_PROGRESS');
+
       return (<>
       {newItems.length > 0 && (
         <ItemList 
@@ -60,7 +66,7 @@ function Home(props) {
         currentUser={currentUser} />
       )}
       </>);
-    } else if (displayItems.length > 0) {
+    } else {
       return (<ItemList 
         items={displayItems} 
         setItemStatus={setItemStatus} 
@@ -69,10 +75,8 @@ function Home(props) {
         currentUser={currentUser} />
       );
     }
-
-    return null;
   }
-
+  const itemLists = getItemLists();
 
   const handleLogout = () => {
     setFilter('INBOX');
@@ -82,9 +86,11 @@ function Home(props) {
   return (
     <div className={styles.card}>
       <Header currentUser={currentUser} onLogout={handleLogout} />
-      <AddItem users={users} currentUser={currentUser} addTask={addTask} addThought={addThought} addQuestion={addQuestion} />
-      <FilterSelect itemFilter={itemFilter} setFilter={setFilter}/>
-      {getItemLists()}
+      <div className={styles.content}>
+        <AddItem users={users} currentUser={currentUser} addTask={addTask} addThought={addThought} addQuestion={addQuestion} />
+        <FilterSelect itemFilter={itemFilter} setFilter={setFilter}/>
+        {itemLists ? itemLists : <NoContent />}
+      </div>
       <Footer/>
     </div>
   );
