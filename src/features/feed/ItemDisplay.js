@@ -8,7 +8,10 @@ export default function ItemDisplay ({item, currentUser, setItemStatus, deleteIt
   const [isExpanded, setIsExpanded] = useState(false);
 
   return isExpanded ?
-  <ItemDisplayBlock onClose={ () => setIsExpanded(false) }/> :  
+  <ItemDisplayBlock 
+    item={item}
+    onClose={ () => setIsExpanded(false) }
+  /> :  
   <ItemDisplayLine 
     item={item} 
     currentUser={currentUser} 

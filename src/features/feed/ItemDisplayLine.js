@@ -9,19 +9,6 @@ export default function ItemDisplayLine({item, currentUser, setItemStatus, delet
   const [questionState, setQuestionState] = useState(null);
   const next = getNextStatus(item);
 
-  const getBadge = () => {
-    switch(item.item_type) {
-      case 'TASK':
-        return <Badge.Task />
-      case 'THOUGHT':
-        return <Badge.Thought />
-      case 'QUESTION':
-        return <Badge.Question />
-      default:
-        return null;
-    }
-  }
-
   const isQuestion = item.item_type === 'QUESTION';
   const isAssignedToMe = item.assigned_to === currentUser;
   const questionButtons = (
@@ -54,7 +41,7 @@ export default function ItemDisplayLine({item, currentUser, setItemStatus, delet
 
   return (
   <div className={styles.wrapper}>
-  {getBadge()}
+  <Badge type={item.item_type} />
   <span className={styles.title}>
     {item.title}
   </span>

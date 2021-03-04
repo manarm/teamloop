@@ -1,0 +1,28 @@
+h3 {
+  margin: 0;
+}
+
+.block {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+.badge {
+  grid-column: 1 / 2;
+  display: flex;
+  justify-content: center;
+}
+.title {
+  grid-column: 2 / 8;
+}
+.close {
+  grid-column: 8 / 9;
+}
+.meta {
+  grid-column: 2 / 5;
+}
+.content {
+  grid-column: 5 / 9;
+}
+.controls {
+  grid-column: 8 / 9;
+}
