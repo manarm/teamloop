@@ -19,7 +19,7 @@ export default function ItemDisplayLine({item, currentUser, setItemStatus, answe
     <span className={styles.user}>{`to: ${item.assigned_to}`}</span>
     <span className={styles.user}>{`from: ${item.author}`}</span>
     <span className={styles.controls}>
-      <AdvanceItemButton item={item} setItemStatus={setItemStatus} currentUser={currentUser}/>
+      {item.item_type !== 'QUESTION' && <AdvanceItemButton item={item} setItemStatus={setItemStatus} currentUser={currentUser}/>}
       <Button onClick={onExpand}>Expand</Button>
     </span>
   </div>
