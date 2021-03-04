@@ -18,7 +18,7 @@ export default function DeleteButton({item, deleteItem, children}) {
       </div>
       <div className={styles.content}>
         <p><strong>WARNING</strong></p>
-        <p>This will delete this loop for all users.</p>
+        <p>This will delete the loop for all users.</p>
         <p>No takebacks.</p>
       </div>
       <div className={styles.controls}>
