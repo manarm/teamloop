@@ -56,6 +56,7 @@ export const addTask = (title, author, assigned_to) => {
     status: 'NEW',
     author,
     assigned_to,
+    description: 'task description',
     id: item_id
   };
   item_id++;
@@ -69,6 +70,7 @@ export const addThought = (title, author, assigned_to) => {
     status: 'NEW',
     author,
     assigned_to,
+    description: 'thought description',
     id: item_id
   };
   item_id++;

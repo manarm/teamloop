@@ -3,8 +3,21 @@ import Badge from '../common/Badge'
 import Button from '../common/Button';
 import AdvanceItemButton from './AdvanceItemButton';
 import DeleteButton from './DeleteButton';
+import QuestionDisplay from './QuestionDisplay';
 
 export default function ItemDisplayBlock({item, setItemStatus, deleteItem, currentUser, onClose}) {
+  const content = () => {
+    switch (item.item_type) {
+      case 'TASK':
+      case 'THOUGHT':
+        return item.description;
+      case 'QUESTION':
+        return <QuestionDisplay />
+      default:
+        return null;
+    }
+  }
+  
   return <div className={styles.block}>
     <div className={styles.badge}><Badge type={item.item_type} /></div>
     <div className={styles.title}><h3>{item.title}</h3></div>
@@ -15,7 +28,7 @@ export default function ItemDisplayBlock({item, setItemStatus, deleteItem, curre
       <li>to: {item.assigned_to}</li>  
       <li>status: {item.status.toLowerCase().replace('_', ' ')}</li>  
     </ul></div>
-    <div className={styles.content}>Description here.</div>
+    <div className={styles.content}>{content()}</div>
     <div className={styles.controls}>
       <AdvanceItemButton item={item} setItemStatus={setItemStatus} currentUser={currentUser}/>
       <DeleteButton item={item} deleteItem={deleteItem}>Delete</DeleteButton>
