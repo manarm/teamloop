@@ -8,9 +8,11 @@ import { data } from './demodata.js';
 export default function DemoHacks () {
   const store = useStore();
 
+  /*
   const handleDumpStore = () => {
     console.log(JSON.stringify(store.getState()));
   }
+  */
 
   const handleLoadData = () => {
     console.log('Loading demo data...');
@@ -27,6 +29,6 @@ export default function DemoHacks () {
   return(<>
     <p className={styles.warning}>DEMO MODE</p>
     <Button onClick={handleLoadData}>Load demo data</Button>
-    <Button onClick={handleDumpStore}>Dump state</Button>
+    { /*<Button onClick={handleDumpStore}>Dump state</Button> */}
   </>);
 }

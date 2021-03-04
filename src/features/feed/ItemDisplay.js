@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { getNextStatus } from './feedSlice';
 import Button from '../common/Button';
 import Badge from '../common/Badge';
+import DeleteButton from './DeleteButton';
 
 export default function ItemDisplay ({item, currentUser, setItemStatus, deleteItem, answerQuestion}) {
   const [questionState, setQuestionState] = useState(null);
@@ -30,7 +31,7 @@ export default function ItemDisplay ({item, currentUser, setItemStatus, deleteIt
     <input type="radio" id="no" name="question" value="no" />
     <label htmlFor="no">No</label>
   </span>);
-  const displayButtons = isQuestion && isAssignedToMe && item.status === 'NEW';
+  const displayQuestion = isQuestion && isAssignedToMe && item.status === 'NEW';
 
   const questionAnswer = <>
     Answer: {item.answerIsYes ? 'yes' : 'no'}
@@ -38,7 +39,7 @@ export default function ItemDisplay ({item, currentUser, setItemStatus, deleteIt
   const displayAnswer = isQuestion && item.status === 'COMPLETE';
 
   const handleNextClick = () => {
-    if(displayButtons) {
+    if(displayQuestion) {
       if (questionState !== null) {
         const answerIsYes = questionState === 'yes';
         answerQuestion(item.id, answerIsYes);
@@ -62,14 +63,14 @@ export default function ItemDisplay ({item, currentUser, setItemStatus, deleteIt
     <div>{`to: ${item.assigned_to}`}</div>
   </span>
   <span>
-    { displayButtons && questionButtons }
+    { displayQuestion && questionButtons }
     { displayAnswer && questionAnswer }
   </span>
   <span className={styles.controls}>
     {displayNextControl && (
       <Button onClick={handleNextClick}>{next.verb}</Button>
     )}
-    <Button onClick={() => deleteItem(item.id)}>x</Button>
+  <DeleteButton item={item} deleteItem={deleteItem}>x</DeleteButton>
   </span>
   </div>
   );
