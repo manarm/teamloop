@@ -44,14 +44,12 @@ export default function AddItem({currentUser, users, addTask, addThought, addQue
     </div>
 
     <div className={styles.formFields}>
-      <div className={styles.formHeader}>
-        <label htmlFor="itemType">Type</label>
-        <select name="itemType" id="itemType" value={itemType} onChange={e => setItemType(e.target.value)}>
-          <option value="task">Task</option>
-          <option value="thought">Thought</option>
-          <option value="question">Question</option>
-        </select>
-      </div>
+      <label htmlFor="itemType">Type</label>
+      <select name="itemType" id="itemType" value={itemType} onChange={e => setItemType(e.target.value)}>
+        <option value="task">Task</option>
+        <option value="thought">Thought</option>
+        <option value="question">Question</option>
+      </select>
       {getForm()}
     </div>
   </Modal>

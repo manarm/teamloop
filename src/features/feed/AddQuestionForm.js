@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import styles from './AddItem.module.scss'
 import Button from '../common/Button'
 import UserSelector from '../common/UserSelector';
 
@@ -27,23 +26,19 @@ export default function AddQuestionForm({onAdd, currentUser, users, closeForm}) 
   }
 
   return(
-  <div>
+  <>
     <UserSelector name="us" value={assignTo} onChange={handleUserChange} users={users} > 
-      Assign To:
+      Assign To
     </UserSelector>
-    <div>
-      <label htmlFor="taskname">Question Title</label>
-      <input 
-        id="taskname" 
-        type='text' 
-        value={title} 
-        onKeyPress={handleKeyPress} 
-        onChange={e => setTitle(e.target.value)} 
-      />
-    </div>
-    <div className={styles.submitControls}>
-      <Button onClick={() => closeForm()}>Cancel</Button>
-      <Button onClick={handleAddClick}>Add</Button>
-    </div>
-  </div>)
+    <label htmlFor="taskname">Question Title</label>
+    <input 
+      id="taskname" 
+      type='text' 
+      value={title} 
+      onKeyPress={handleKeyPress} 
+      onChange={e => setTitle(e.target.value)} 
+    />
+    <Button onClick={() => closeForm()}>Cancel</Button>
+    <Button onClick={handleAddClick}>Add</Button>
+  </>)
 }
