@@ -20,13 +20,15 @@ function Login({login, users}) {
   return (
     <div className={styles.container}>
       <div className={styles.login}>  
-        <div className={styles.logo}>TEAMLOOP🗘</div>
+      <div className={styles.logo}>TEAMLOOP🗘</div>
+      <div className={styles.controls}>
         <DemoHacks />
         <UserSelector name='us' value={user} onChange={handleChangeUser} users={users}>
           Select User: 
         </UserSelector>
         <Button onClick={handleLoginClick}>Log In</Button>
       </div>
+    </div>
     </div>);
 }
 
