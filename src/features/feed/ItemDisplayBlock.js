@@ -10,6 +10,7 @@ export default function ItemDisplayBlock({item, setItemStatus, deleteItem, curre
     <div className={styles.title}><h3>{item.title}</h3></div>
     <div className={styles.close}><Button onClick={onClose}>Close</Button></div>
     <div className={styles.meta}><ul>
+      <li>type: {item.item_type.toLowerCase()}</li>
       <li>from: {item.author}</li>  
       <li>to: {item.assigned_to}</li>  
       <li>status: {item.status.toLowerCase().replace('_', ' ')}</li>  
