@@ -5,6 +5,7 @@
   --highlight-yellow: #e9df00ff;
   --highlight-green: #03fcbaff;
   --background: #feffae;
+  --page: #d4f1ff ; 
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap');
@@ -12,6 +13,7 @@
 body, html, #root {
   margin: 0;
   height: 100%;
+  background-color: var(--page);
 }
 
 body {
