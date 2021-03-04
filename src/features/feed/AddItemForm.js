@@ -13,6 +13,7 @@ export default function AddTaskForm({addItem, currentUser, users, closeForm}) {
   const resetForm = () => {
     setTitle('');
     setItemType('Task');
+    setAssignTo('currentUser');
   }
 
   const validateForm = () => {
