@@ -39,7 +39,7 @@ export default function AddItem({currentUser, users, addTask, addThought, addQue
   <>
   <Modal className={styles.modal} overlayClassName={styles.overlay} isOpen={modalIsOpen}>
     <div className={styles.header}>
-      <h1>Add New Item</h1>
+      <h1>New Loop</h1>
       <Button onClick={handleCloseModal}>X</Button>
     </div>
 
@@ -54,7 +54,7 @@ export default function AddItem({currentUser, users, addTask, addThought, addQue
     </div>
   </Modal>
   <div className={styles.addItem}>
-    <Button onClick={handleOpenModal}>Add Item</Button>
+    <Button onClick={handleOpenModal}>+ compose</Button>
   </div>
   </>
   );

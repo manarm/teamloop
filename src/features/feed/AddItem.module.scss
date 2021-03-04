@@ -1,8 +1,16 @@
 .addItem {
-  margin: 0.8rem;
+  margin-top: 0.8rem;
+  margin-left: 0.8rem;
+
   button {
+    background-color: var(--highlight-blue);
+    border: none;
+    font-weight: bold;
+    border-radius: 8%;
+
     &:hover {
-      background-color: var(--highlight-red);
+      background-color: var(--highlight-blue);
+      color: var(--highlight-red);
     }
   }
 }
