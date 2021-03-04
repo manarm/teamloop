@@ -48,10 +48,10 @@ export const getNextStatus = (item) => {
 
 // Action creators
 let item_id = 0;
-const getNextItemAction = (title, author, assigned_to, description) => {
+const getNextItemAction = (item_type, title, author, assigned_to, description) => {
   const action = {
     type: 'ADD_ITEM',
-    item_type: null,
+    item_type,
     title,
     status: 'NEW',
     author,
@@ -62,25 +62,9 @@ const getNextItemAction = (title, author, assigned_to, description) => {
   item_id++;
   return action;
 }
-export const addTask = (title, author, assigned_to, description) => {
+export const addItem = (item_type, title, author, assigned_to, description) => {
   return { 
-    ...getNextItemAction(title, author, assigned_to, description), 
-    ...{item_type: 'TASK'} 
-  };
-}
-export const addThought = (title, author, assigned_to, description) => {
-  return { 
-    ...getNextItemAction(title, author, assigned_to, description), 
-    ...{item_type: 'THOUGHT'} 
-  };
-}
-export const addQuestion = (title, author, assigned_to, description) => {
-  return { 
-    ...getNextItemAction(title, author, assigned_to, description), 
-    ...{
-      item_type: 'QUESTION',
-      answer: null
-    } 
+    ...getNextItemAction(item_type, title, author, assigned_to, description), 
   };
 }
 export const deleteItem = (id) => {
