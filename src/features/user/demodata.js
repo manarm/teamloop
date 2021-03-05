@@ -8,6 +8,7 @@ export const data = {
         "author": "madison",
         "assigned_to": "madison",
         "description": "The paperclips are a tangled mess. Please, please separate and collate.",
+        "date_created": "\"2021-03-01T15:41:57.809Z\"",
         "id": 0
       },
       {
@@ -16,6 +17,7 @@ export const data = {
         "status": "IN_PROGRESS",
         "author": "madison",
         "assigned_to": "sam",
+        "date_created": "\"2021-02-28T15:41:57.809Z\"",
         "description": "The sheep are looking VERY shaggy. It'll make them happy, and us happy. Get on it.",
         "id": 1
       },
@@ -25,6 +27,7 @@ export const data = {
         "status": "NEW",
         "author": "madison",
         "assigned_to": "sam",
+        "date_created": "\"2021-02-21T15:41:57.809Z\"",
         "description": "Pleasant climate, vibrant culture, seaside views. What's holding us back?",
         "id": 2
       },
@@ -35,6 +38,8 @@ export const data = {
         "answer": "no",
         "author": "madison",
         "assigned_to": "sam",
+        "date_created": "\"2021-02-18T15:41:57.809Z\"",
+        "date_completed": "\"2021-02-19T15:41:57.809Z\"",
         "description": "The bears: discuss. Best team ever?",
         "id": 3
       },
@@ -44,6 +49,7 @@ export const data = {
         "status": "NEW",
         "author": "sam",
         "assigned_to": "madison",
+        "date_created": "\"2021-01-18T15:41:57.809Z\"",
         "description": "I know that's not MY rotten banana. Just saying.",
         "id": 4
       },
@@ -53,6 +59,7 @@ export const data = {
         "status": "NEW",
         "author": "sam",
         "assigned_to": "madison",
+        "date_created": "\"2021-03-04T15:41:57.809Z\"",
         "description": "Might go for tea later. Drop by if you want to come.",
         "id": 5
       },
@@ -62,6 +69,8 @@ export const data = {
         "status": "COMPLETE",
         "author": "sam",
         "description": "Guess that's why they call it the windy city.",
+        "date_created": "\"2021-03-04T15:41:57.809Z\"",
+        "date_completed": "\"2021-03-05T15:41:57.809Z\"",
         "assigned_to": "madison",
         "id": 7
       },
@@ -71,6 +80,7 @@ export const data = {
         "status": "NEW",
         "answer": null,
         "author": "madison",
+        "date_created": "\"2021-03-04T15:41:57.809Z\"",
         "assigned_to": "sam",
         "description": "Is it the ultimate party food?",
         "id": 9

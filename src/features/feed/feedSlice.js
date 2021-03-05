@@ -57,6 +57,8 @@ const getNextItemAction = (item_type, title, author, assigned_to, description) =
     author,
     assigned_to,
     description,
+    date_created: new Date(),
+    date_completed: null,
     id: item_id
   }
   item_id++;
@@ -103,9 +105,18 @@ function items(state = [], action) {
     case 'DELETE_ITEM':
       return state.filter(item => item.id !== action.id);
     case 'SET_ITEM_STATUS':
+      const getDate = () => {
+        if(action.status === 'COMPLETE') {
+          return new Date();
+        } else {
+          // Automatically nulls date_completed for re-opened items.
+          return null;
+        }
+      }
       return state.filter(item => {
         if (item.id === action.id) {
           item.status = action.status;
+          item.date_completed = getDate();
         }
         return item;
       })

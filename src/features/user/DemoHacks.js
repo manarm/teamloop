@@ -20,9 +20,16 @@ export default function DemoHacks () {
       type: 'SET_USERS',
       users: data.users.users
     });
+    const parsedItems = data.feed.items.map(item => {
+      item.date_created = new Date(JSON.parse(item.date_created));
+      if(item.date_completed) {
+        item.date_completed = new Date(JSON.parse(item.date_completed));
+      }
+      return item;
+    })
     store.dispatch({
       type: 'SET_ITEMS',
-      items: data.feed.items
+      items: parsedItems
     })
   }
 
