@@ -76,9 +76,18 @@ export const deleteItem = (id) => {
   };
 }
 export const setItemStatus = (id, status) => {
+  const getDate = () => {
+    if(status === 'COMPLETE') {
+      return new Date();
+    } else {
+      // Automatically nulls date_completed for re-opened items.
+      return null;
+    }
+  }
   return {
     type: 'SET_ITEM_STATUS',
     status,
+    date_completed: getDate(),
     id
   };
 }
@@ -105,18 +114,10 @@ function items(state = [], action) {
     case 'DELETE_ITEM':
       return state.filter(item => item.id !== action.id);
     case 'SET_ITEM_STATUS':
-      const getDate = () => {
-        if(action.status === 'COMPLETE') {
-          return new Date();
-        } else {
-          // Automatically nulls date_completed for re-opened items.
-          return null;
-        }
-      }
       return state.filter(item => {
         if (item.id === action.id) {
           item.status = action.status;
-          item.date_completed = getDate();
+          item.date_completed = action.date_completed
         }
         return item;
       })
