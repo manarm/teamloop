@@ -21,9 +21,9 @@ export default function DemoHacks () {
       users: data.users.users
     });
     const parsedItems = data.feed.items.map(item => {
-      item.date_created = new Date(JSON.parse(item.date_created));
+      item.date_created = new Date(item.date_created);
       if(item.date_completed) {
-        item.date_completed = new Date(JSON.parse(item.date_completed));
+        item.date_completed = new Date(item.date_completed);
       }
       return item;
     })

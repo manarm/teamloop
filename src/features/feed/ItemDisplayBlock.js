@@ -42,7 +42,7 @@ export default function ItemDisplayBlock({item, setItemStatus, deleteItem, curre
   return <div className={styles.block}>
     <div className={styles.badge}><Badge type={item.item_type} /></div>
     <div className={styles.title}><h3>{item.title}</h3></div>
-    <div className={styles.close}><Button onClick={onClose}>Close</Button></div>
+    <div className={styles.close}><Button onClick={onClose}>▴</Button></div>
     <div className={styles.meta}><ul>
       <li>type: {item.item_type.toLowerCase()}</li>
       <li>from: {item.author}</li>  
