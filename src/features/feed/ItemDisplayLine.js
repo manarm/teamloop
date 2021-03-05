@@ -8,6 +8,11 @@ export default function ItemDisplayLine({item, currentUser, setItemStatus, answe
     item.title.substring(0,30) + '...' :
     item.title;
 
+  const dateCreated = item.date_created;
+  const dateString = 'created: ' +
+      (dateCreated.getMonth() + 1) + '/' 
+      + dateCreated.getDate() + '/' 
+      + String(dateCreated.getFullYear()).substring(2,4);
   return (
   <div className={styles.wrapper}>
     <button onClick={onExpand} className={styles.titleButton}>
@@ -18,6 +23,7 @@ export default function ItemDisplayLine({item, currentUser, setItemStatus, answe
     </button>
     <span className={styles.user}>{`to: ${item.assigned_to}`}</span>
     <span className={styles.user}>{`fr: ${item.author}`}</span>
+    <span className={styles.date}>{dateString}</span>
     <span className={styles.controls}>
       {item.item_type !== 'QUESTION' && <AdvanceItemButton item={item} setItemStatus={setItemStatus} currentUser={currentUser}/>}
       <Button onClick={onExpand}>▾</Button>

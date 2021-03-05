@@ -7,7 +7,7 @@ export const getNextStatus = (item) => {
   const typeMap = {
     'THOUGHT': {
       'NEW' : {
-        verb: 'Ack',
+        verb: 'Acknowledge',
         nextStatus: 'COMPLETE'
       }
     },

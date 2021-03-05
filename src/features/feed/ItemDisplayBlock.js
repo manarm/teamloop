@@ -48,8 +48,8 @@ export default function ItemDisplayBlock({item, setItemStatus, deleteItem, curre
       <li>from: {item.author}</li>  
       <li>to: {item.assigned_to}</li>  
       <li>status: {item.status.toLowerCase().replace('_', ' ')}</li> 
-      <li>created: {item.date_created.toDateString().substring(0,11)}</li> 
-      {item.date_completed && <li>completed: {item.date_completed.toDateString().substring(0,11)}</li> }
+      <li>created: {item.date_created.toDateString().substring(4)}</li> 
+      {item.date_completed && <li>complete: {item.date_completed.toDateString().substring(4)}</li> }
     </ul></div>
     <div className={styles.content}>{content()}</div>
     <div className={styles.controls}>

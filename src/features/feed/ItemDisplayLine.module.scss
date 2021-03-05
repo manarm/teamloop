@@ -1,7 +1,12 @@
 .wrapper {
   display: grid;
-  grid-template-columns: 40% 15% 15% 30%;
+  grid-template-columns: 35% 15% 15% 15% 20%;
   font-size: 0.8rem;
+
+  span {
+    display: flex;
+    align-items: center;
+  }
 }
 
 button.titleButton {
@@ -18,19 +23,9 @@ button.titleButton {
 }
 
 .title {
-  display: flex;
-  align-items: center;
   padding-left: 0.3rem;
   font-weight: bold;
 }
-
-.user {
-  display: flex;
-  align-items: center;
-}
-
 .controls {
-  display: flex;
   justify-content: flex-end;
-  align-items: center;
 }
