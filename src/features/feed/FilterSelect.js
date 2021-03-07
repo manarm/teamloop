@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInbox, faPaperPlane, faCheck} from '@fortawesome/free-solid-svg-icons'
 import styles from './FilterSelect.module.scss';
 import Button from '../common/Button';
 
 export default function FilterSelect({itemFilter, setFilter}){
+  const [ sort, setSort ] = useState('title');
+
   const filters = [
     {
       display: <><FontAwesomeIcon icon={faInbox} /> inbox</>,
@@ -19,11 +22,34 @@ export default function FilterSelect({itemFilter, setFilter}){
     }
   ]
 
-  return (
-  <div className={styles.filter}>
-    {filters.map(f => {
-      const standOut = f.filter === itemFilter;
-      return <Button key={f.filter} standOut={standOut} onClick={() => setFilter(f.filter)}>{f.display}</Button> 
-    })} 
+  const onSortChange = e => {
+    setSort(e.target.value);
+    console.log('sort chg ' + sort);
+  }
+
+  const getSortByDateString = () => {
+    if (itemFilter === 'COMPLETE') {
+      return 'date: completed';
+    } else {
+      return 'date: created';
+    }
+  }
+
+  return (<div className={styles.container}>
+    <div className={styles.filter}>
+      {filters.map(f => {
+        const standOut = f.filter === itemFilter;
+        return <Button key={f.filter} standOut={standOut} onClick={() => setFilter(f.filter)}>{f.display}</Button> 
+      })} 
+    </div>
+    <div>
+      <label htmlFor="sort">Sort by: </label>
+      <select name="sort" id="sort" value={sort} onChange={onSortChange}>
+        <option key='title' value="title">title</option>
+        <option key='to' value="to">user: to</option>
+        <option key='from' value="from">user: from</option>
+        <option key='date' value="date">{getSortByDateString()}</option>
+      </select>
+    </div>
   </div>
 )}

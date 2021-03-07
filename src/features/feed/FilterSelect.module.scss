@@ -1,3 +1,8 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .filter {
   button {
     margin-bottom: -1px;
