@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import styles from './Home.module.scss';
-import { addItem, answerQuestion, deleteItem, setItemStatus, setFilter} from './feedSlice';
+import { addItem, answerQuestion, deleteItem, setItemStatus, setFilter, setSort} from './feedSlice';
 import {logout} from '../user/userSlice'
 import AddItem from './AddItem';
 import ItemList from './ItemList';
@@ -18,6 +18,7 @@ function Home(props) {
     deleteItem, 
     setItemStatus,
     setFilter,
+    setSort,
     users,
     currentUser, 
     logout
@@ -86,7 +87,7 @@ function Home(props) {
       <Header currentUser={currentUser} onLogout={handleLogout} />
       <div className={styles.content}>
         <AddItem users={users} currentUser={currentUser} addItem={addItem} />
-        <FilterSelect itemFilter={itemFilter} setFilter={setFilter}/>
+        <FilterSelect itemFilter={itemFilter} setFilter={setFilter} setSort={setSort}/>
         <div className={styles.itemLists}>
           {itemLists ? itemLists : <NoContent />}
         </div>
@@ -104,5 +105,5 @@ const mapStateToProps = (state) => {
     currentUser: state.users.currentUser
   }
 }
-const actionCreators = {addItem, answerQuestion, deleteItem, setItemStatus, setFilter, logout};
+const actionCreators = {addItem, answerQuestion, deleteItem, setItemStatus, setFilter, setSort, logout};
 export default connect(mapStateToProps, actionCreators)(Home);

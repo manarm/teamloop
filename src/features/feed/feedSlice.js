@@ -91,18 +91,24 @@ export const setItemStatus = (id, status) => {
     id
   };
 }
-export const setFilter = (filter) => {
-  return {
-    type: 'SET_FILTER',
-    filter
-  };
-}
 export const answerQuestion = (id, answer) => {
   return {
     type: 'ANSWER_QUESTION',
     answer,
     id
   }
+}
+export const setFilter = (filter) => {
+  return {
+    type: 'SET_FILTER',
+    filter
+  };
+}
+export const setSort = (sort) => {
+  return {
+    type: 'SET_SORT',
+    sort
+  };
 }
 
 // Reducers
@@ -145,5 +151,14 @@ function itemFilter(state = 'INBOX', action) {
   }
 }
 
-const reducer = combineReducers({items, itemFilter});
+function itemSort(state='TITLE', action) {
+  switch(action.type) {
+    case 'SET_SORT':
+      return action.sort;
+    default:
+      return state;
+  }
+}
+
+const reducer = combineReducers({items, itemFilter, itemSort});
 export default reducer;

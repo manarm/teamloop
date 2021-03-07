@@ -4,8 +4,8 @@ import { faInbox, faPaperPlane, faCheck} from '@fortawesome/free-solid-svg-icons
 import styles from './FilterSelect.module.scss';
 import Button from '../common/Button';
 
-export default function FilterSelect({itemFilter, setFilter}){
-  const [ sort, setSort ] = useState('title');
+export default function FilterSelect({itemFilter, setFilter, setSort}){
+  const [ sortSelected, setSortSelected ] = useState('title');
 
   const filters = [
     {
@@ -23,8 +23,9 @@ export default function FilterSelect({itemFilter, setFilter}){
   ]
 
   const onSortChange = e => {
-    setSort(e.target.value);
-    console.log('sort chg ' + sort);
+    const sort = e.target.value;
+    setSortSelected(sort);
+    setSort(sort);
   }
 
   const getSortByDateString = () => {
@@ -44,11 +45,11 @@ export default function FilterSelect({itemFilter, setFilter}){
     </div>
     <div>
       <label htmlFor="sort">Sort by: </label>
-      <select name="sort" id="sort" value={sort} onChange={onSortChange}>
-        <option key='title' value="title">title</option>
-        <option key='to' value="to">user: to</option>
-        <option key='from' value="from">user: from</option>
-        <option key='date' value="date">{getSortByDateString()}</option>
+      <select name="sort" id="sort" value={sortSelected} onChange={onSortChange}>
+        <option key='title' value="TITLE">title</option>
+        <option key='to' value="TO">user: to</option>
+        <option key='from' value="FROM">user: from</option>
+        <option key='date' value="DATE">{getSortByDateString()}</option>
       </select>
     </div>
   </div>
