@@ -30,9 +30,9 @@ export default function FilterSelect({itemFilter, setFilter, setSort}){
 
   const getSortByDateString = () => {
     if (itemFilter === 'COMPLETE') {
-      return 'date: completed';
+      return 'date_completed'
     } else {
-      return 'date: created';
+      return 'date_created';
     }
   }
 
@@ -46,10 +46,10 @@ export default function FilterSelect({itemFilter, setFilter, setSort}){
     <div>
       <label htmlFor="sort">Sort by: </label>
       <select name="sort" id="sort" value={sortSelected} onChange={onSortChange}>
-        <option key='title' value="TITLE">title</option>
-        <option key='to' value="TO">user: to</option>
-        <option key='from' value="FROM">user: from</option>
-        <option key='date' value="DATE">{getSortByDateString()}</option>
+        <option key='title' value="title">title</option>
+        <option key='to' value="assigned_to">user: to</option>
+        <option key='from' value="author">user: from</option>
+        <option key='date' value={getSortByDateString()}>{getSortByDateString().replace('_', ': ')}</option>
       </select>
     </div>
   </div>

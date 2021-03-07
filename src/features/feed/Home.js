@@ -13,6 +13,7 @@ function Home(props) {
   const {
     items, 
     itemFilter,
+    itemSort,
     addItem,  
     answerQuestion, 
     deleteItem, 
@@ -36,6 +37,10 @@ function Home(props) {
         return false;
     }
   });
+  displayItems.sort((a,b) => (
+    a[itemSort] > b[itemSort] ? 1 : -1
+  ))
+
 
   const getItemLists = () => {
     if (!displayItems.length) {
@@ -101,6 +106,7 @@ const mapStateToProps = (state) => {
   return {
     items: state.feed.items,
     itemFilter: state.feed.itemFilter,
+    itemSort: state.feed.itemSort,
     users: state.users.users,
     currentUser: state.users.currentUser
   }
