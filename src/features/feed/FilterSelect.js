@@ -28,14 +28,6 @@ export default function FilterSelect({itemFilter, setFilter, setSort}){
     setSort(sort);
   }
 
-  const getSortByDateString = () => {
-    if (itemFilter === 'COMPLETE') {
-      return 'date_completed'
-    } else {
-      return 'date_created';
-    }
-  }
-
   return (<div className={styles.container}>
     <div className={styles.filter}>
       {filters.map(f => {
@@ -49,7 +41,8 @@ export default function FilterSelect({itemFilter, setFilter, setSort}){
         <option key='title' value="title">title</option>
         <option key='to' value="assigned_to">user: to</option>
         <option key='from' value="author">user: from</option>
-        <option key='date' value={getSortByDateString()}>{getSortByDateString().replace('_', ': ')}</option>
+        <option key='date' value="date_created">date: created</option>
+        <option key='date' value="date_completed">date: completed</option>
       </select>
     </div>
   </div>
