@@ -41,8 +41,8 @@ export default function FilterSelect({itemFilter, setFilter, setSort}){
         <option key='title' value="title">title</option>
         <option key='to' value="assigned_to">user: to</option>
         <option key='from' value="author">user: from</option>
-        <option key='date' value="date_created">date: created</option>
-        <option key='date' value="date_completed">date: completed</option>
+        <option key='date_created' value="date_created">date: created</option>
+        <option key='date_completed' value="date_completed">date: completed</option>
       </select>
     </div>
   </div>

@@ -1,7 +1,6 @@
 import { useStore } from 'react-redux';
 import styles from './DemoHacks.module.scss';
 import Button from '../common/Button';
-import { data } from './demodata.js';
 
   // Add hacks to login screen.
   // For front-end demo only.
@@ -16,22 +15,32 @@ export default function DemoHacks () {
 
   const handleLoadData = () => {
     console.log('Loading demo data...');
+    fetch('http://localhost:3000/items')
+    .then(response => response.json())
+    .then(data => {
+      const parsedItems = data.map(item => {
+        item.date_created = new Date(item.date_created);
+        if(item.date_completed) {
+          item.date_completed = new Date(item.date_completed);
+        }
+        return item;
+      })
+      console.log('parsed items ' + parsedItems);
+      store.dispatch({
+        type: 'SET_ITEMS',
+        items: parsedItems
+      })
+    }).catch(e => console.log(e));
+  }
+
+  fetch('http://localhost:3000/users')
+  .then(response => response.json())
+  .then(data => {
     store.dispatch({
       type: 'SET_USERS',
-      users: data.users.users
+      users: data
     });
-    const parsedItems = data.feed.items.map(item => {
-      item.date_created = new Date(item.date_created);
-      if(item.date_completed) {
-        item.date_completed = new Date(item.date_completed);
-      }
-      return item;
-    })
-    store.dispatch({
-      type: 'SET_ITEMS',
-      items: parsedItems
-    })
-  }
+  }).catch(e => console.log(e));
 
   return(<>
     <p className={styles.warning}>DEMO MODE</p>
