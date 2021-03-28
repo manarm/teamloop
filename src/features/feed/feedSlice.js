@@ -47,6 +47,52 @@ export const getNextStatus = (item) => {
 }
 
 // Action creators
+// Item fetch from backend
+export const setItemFetchError = (isError) => {
+  return {
+    type: 'ITEM_FETCH_ERROR',
+    isError
+  }
+}
+export const setItemFetchLoading = (isLoading) => {
+  return {
+    type: 'ITEM_FETCH_LOADING',
+    isLoading
+  }
+}
+export const itemFetchSuccess = (items) => {
+  return {
+    type: 'SET_ITEMS',
+    items
+  }
+}
+export const itemFetch = (url) => {
+  return (dispatch) => {
+    console.log("begin itemFetch");
+    dispatch(setItemFetchLoading(true));
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      console.log('received data ' + data);
+      const items = data.map(item => {
+        item.date_created = new Date(item.date_created);
+        if(item.date_completed) {
+          item.date_completed = new Date(item.date_completed);
+        }
+        return item;
+      })
+      dispatch(setItemFetchLoading(false));
+      dispatch(itemFetchSuccess(items));
+    })
+    .catch(error => {
+      console.log(error);
+      dispatch(setItemFetchLoading(false));
+      dispatch(setItemFetchError(true));
+    });
+  }
+}
+
+
 let item_id = 0;
 const getNextItemAction = (item_type, title, author, assigned_to, description) => {
   const action = {
@@ -160,5 +206,23 @@ function itemSort(state='TITLE', action) {
   }
 }
 
-const reducer = combineReducers({items, itemFilter, itemSort});
+function itemFetchError(state=false, action) {
+  switch(action.type) {
+    case 'ITEM_FETCH_ERROR':
+      return action.isError;
+    default: 
+      return state;
+  }
+}
+
+function itemFetchLoading (state=false, action) {
+  switch(action.type) {
+    case 'ITEM_FETCH_LOADING':
+      return action.isLoading;
+    default:
+      return state;
+  }
+}
+
+const reducer = combineReducers({items, itemFilter, itemSort, itemFetchLoading, itemFetchError});
 export default reducer;

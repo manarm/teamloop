@@ -14,6 +14,7 @@ export default function DemoHacks () {
   */
 
   const handleLoadData = () => {
+/*
     console.log('Loading demo data...');
     fetch('http://localhost:3001/items')
     .then(response => response.json())
@@ -31,7 +32,7 @@ export default function DemoHacks () {
         items: parsedItems
       })
     }).catch(e => console.log(e));
-  }
+  */
 
   fetch('http://localhost:3001/users')
   .then(response => response.json())
@@ -41,7 +42,7 @@ export default function DemoHacks () {
       users: data
     });
   }).catch(e => console.log(e));
-
+}
   return(<>
     <p className={styles.warning}>DEMO MODE</p>
     <Button onClick={handleLoadData}>Load demo data</Button>

@@ -1,6 +1,15 @@
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import styles from './Home.module.scss';
-import { addItem, answerQuestion, deleteItem, setItemStatus, setFilter, setSort} from './feedSlice';
+import { 
+  itemFetch, 
+  addItem, 
+  answerQuestion, 
+  deleteItem, 
+  setItemStatus, 
+  setFilter, 
+  setSort
+} from './feedSlice';
 import {logout} from '../user/userSlice'
 import AddItem from './AddItem';
 import ItemList from './ItemList';
@@ -14,6 +23,9 @@ function Home(props) {
     items, 
     itemFilter,
     itemSort,
+    itemFetch,
+    itemFetchLoading,
+    itemFetchError,
     addItem,  
     answerQuestion, 
     deleteItem, 
@@ -25,6 +37,10 @@ function Home(props) {
     logout
   } =  props;  
   
+  useEffect(() => {
+    itemFetch('http://localhost:3001/items');
+  }, [itemFetch]);
+
   const displayItems = items.filter(item => {
     switch (itemFilter) {
       case 'INBOX':
@@ -93,9 +109,13 @@ function Home(props) {
       <div className={styles.content}>
         <AddItem users={users} currentUser={currentUser} addItem={addItem} />
         <FilterSelect itemFilter={itemFilter} setFilter={setFilter} setSort={setSort}/>
-        <div className={styles.itemLists}>
-          {itemLists ? itemLists : <NoContent />}
-        </div>
+        {itemFetchLoading && <p>Loading...</p>}
+        {itemFetchError && <p>Error contacting server.</p>}
+        {(!itemFetchLoading && !itemFetchError) && (
+          <div className={styles.itemLists}>
+            {itemLists ? itemLists : <NoContent />}
+          </div>
+        )}
       </div>
       <Footer/>
     </div>
@@ -107,9 +127,20 @@ const mapStateToProps = (state) => {
     items: state.feed.items,
     itemFilter: state.feed.itemFilter,
     itemSort: state.feed.itemSort,
+    itemFetchLoading: state.feed.itemFetchLoading,
+    itemFetchError: state.feed.itemFetchError,
     users: state.users.users,
-    currentUser: state.users.currentUser
+    currentUser: state.users.currentUser,
   }
 }
-const actionCreators = {addItem, answerQuestion, deleteItem, setItemStatus, setFilter, setSort, logout};
+const actionCreators = {
+  itemFetch,
+  addItem, 
+  answerQuestion, 
+  deleteItem, 
+  setItemStatus, 
+  setFilter, 
+  setSort, 
+  logout
+};
 export default connect(mapStateToProps, actionCreators)(Home);
