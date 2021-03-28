@@ -15,7 +15,7 @@ export default function DemoHacks () {
 
   const handleLoadData = () => {
     console.log('Loading demo data...');
-    fetch('http://localhost:3000/items')
+    fetch('http://localhost:3001/items')
     .then(response => response.json())
     .then(data => {
       const parsedItems = data.map(item => {
@@ -33,7 +33,7 @@ export default function DemoHacks () {
     }).catch(e => console.log(e));
   }
 
-  fetch('http://localhost:3000/users')
+  fetch('http://localhost:3001/users')
   .then(response => response.json())
   .then(data => {
     store.dispatch({
